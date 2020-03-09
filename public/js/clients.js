@@ -147,7 +147,7 @@ $(document).ready(function() {
 function format(d) {
     // `d` is the original data object for the row
     return (
-        '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<table class="table" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         "<thead><tr>" +
         "<th></th>" +
         "<th>Stage</th>" +
@@ -163,6 +163,148 @@ function format(d) {
         "</tr></thead>" +
         "<tbody>" +
         "<tr>" +
+        "<td>lead" +
+        "</td>" +
+        "<td>active (def)" +
+        "</td>" +
+        "<td>WB" +
+        "</td>" +
+        "<td>< 1 >" +
+        "</td>" +
+        "<td>j" +
+        "</td>" +
+        "<td>j" +
+        "</td>" +
+        "<td>m" +
+        "</td>" +
+        "<td>any" +
+        "</td>" +
+        "<td>< warm >" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>opp" +
+        "</td>" +
+        "<td>interest" +
+        "</td>" +
+        "<td>GA" +
+        "</td>" +
+        "<td>< 1 >" +
+        "</td>" +
+        "<td>f" +
+        "</td>" +
+        "<td>a" +
+        "</td>" +
+        "<td>t" +
+        "</td>" +
+        "<td>pm" +
+        "</td>" +
+        "<td>< low >" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>prop" +
+        "</td>" +
+        "<td>no interest" +
+        "</td>" +
+        "<td>SE" +
+        "</td>" +
+        "<td>< 3 >" +
+        "</td>" +
+        "<td>m" +
+        "</td>" +
+        "<td>s" +
+        "</td>" +
+        "<td>w" +
+        "</td>" +
+        "<td>now" +
+        "</td>" +
+        "<td>$0" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>sold" +
+        "</td>" +
+        "<td>not now" +
+        "</td>" +
+        "<td>SC" +
+        "</td>" +
+        "<td>< 1 >" +
+        "</td>" +
+        "<td>a" +
+        "</td>" +
+        "<td>o" +
+        "</td>" +
+        "<td>t" +
+        "</td>" +
+        "<td>wkly" +
+        "</td>" +
+        "<td>$0" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>done" +
+        "</td>" +
+        "<td>stop" +
+        "</td>" +
+        "<td>HS" +
+        "</td>" +
+        "<td>< 1 >" +
+        "</td>" +
+        "<td>m" +
+        "</td>" +
+        "<td>n" +
+        "</td>" +
+        "<td>f" +
+        "</td>" +
+        "<td>mthly" +
+        "</td>" +
+        "<td>$0" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<td>paid" +
+        "</td>" +
+        "<td>inactive" +
+        "</td>" +
+        "<td>CM" +
+        "</td>" +
+        "<td>< 1 >" +
+        "</td>" +
+        "<td>j" +
+        "</td>" +
+        "<td>d" +
+        "</td>" +
+        "<td>s" +
+        "</td>" +
+        "<td>00/00/00" +
+        "</td>" +
+        "<td>$0" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
+        "<td>" +
+        "</td>" +
         "</tr>" +
         "</tbody>" +
         "</table>"
