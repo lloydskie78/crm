@@ -12,7 +12,7 @@
             </button>
         </div>
         <!-- /.card-body -->
-        <div class="card-body mailbox-messages">
+        <div class="card-body mailbox-messages table-responsive">
             <table id="example1" class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -178,7 +178,7 @@
                         </td>
                     </tr>
                 </tbody> --}}
-                <tfoot>
+                {{-- <tfoot>
                     <tr>
                         <th>
                             <button type="button" class="btn btn-default btn-sm checkbox-toggle">
@@ -195,7 +195,7 @@
                         <th>Email</th>
                         <th>Department</th>
                     </tr>
-                </tfoot>
+                </tfoot> --}}
             </table>
         </div>
     </div>
@@ -229,7 +229,7 @@
                             <label for="inputFirstName">First Name</label>
                             <input type="text" class="form-control" id="first-name">
                         </div>
-                        <div class="form-group col-md">
+                        <div class="form-group col-md">`
                             <label for="inputLastName">Last Name</label>
                             <input type="text" class="form-control" id="last-name">
                         </div>
@@ -262,5 +262,11 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('js/jquery.tabledit.js') }}"></script>
+<script src="{{ asset('js/jquery.tabledit.min.js') }}"></script>
 <script src="{{ asset('js/clients.js') }}"></script>
+@endsection
+
+@section('styles')
+<link rel="stylesheet" href="{{asset('css/clients.css')}}" />
 @endsection

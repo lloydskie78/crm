@@ -3,9 +3,9 @@
 //     $("#example1").DataTable();
 // });
 
+var editor; // use a global for the submit and return data rendering in the examples
+
 /**
-
-
 * ! THIS IS NEEDED FOR THE PROJECT!
 
 * ! ROW GROUPING URL:
@@ -15,10 +15,6 @@
 * ! https://datatables.net/examples/api/row_details.html
 * ! http://live.datatables.net/bihawepu/1/edit
 * ! http://jsfiddle.net/fe74zm38/
-
-
-
-
 **/
 
 // $(function() {
@@ -26,6 +22,7 @@
 // });
 
 $(document).ready(function() {
+    debugger;
     var table = $("#example1").DataTable({
         data: testdata.data,
         select: "single",
@@ -41,7 +38,7 @@ $(document).ready(function() {
                         '<label for="check1"></label>'
                     );
                 },
-                width: "15px"
+                width: "13px"
             },
             {
                 className: "details-control",
@@ -49,7 +46,7 @@ $(document).ready(function() {
                 data: null,
                 defaultContent: "",
                 render: function() {
-                    return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
+                    return '<i class="fa fa-plus-square" aria-hidden=clear"true"></i>';
                 },
                 width: "15px"
             },
@@ -78,7 +75,7 @@ $(document).ready(function() {
                 data: "department"
             }
         ],
-        order: [[1, "asc"]]
+        order: [[2, "asc"]]
     });
 
     // Add event listener for opening and closing details
@@ -107,20 +104,69 @@ $(document).ready(function() {
             e.preventDefault();
         }
     });
+
+    // $("#example1 tbody").Tabledit({
+    //     columns: {
+    //         identifier: [2, "id"],
+    //         editable: [
+    //             [3, "agency-name"],
+    //             [4, "suburb"],
+    //             [5, "name"],
+    //             [6, "last-name"],
+    //             [7, "number"],
+    //             [8, "email"],
+    //             [9, "department"]
+    //         ]
+    //     }
+    // });
+});
+
+$(document).ready(function() {
+    $("#example1").Tabledit({
+        columns: {
+            identifier: [2, "id"],
+            editable: [
+                [3, "agency-name"],
+                [4, "suburb"],
+                [5, "name"],
+                [6, "last-name"],
+                [7, "number"],
+                [8, "email"],
+                [9, "department"]
+            ]
+        },
+        restoreButton: false,
+        onSuccess: function(data) {
+            if (data.action == "delete") {
+                $("#" + data.id).remove();
+            }
+        }
+    });
 });
 
 function format(d) {
     // `d` is the original data object for the row
-    // return (
-    //     '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-    //     "<tr>" +
-    //     '<td><div class="icheck-primary"><input type="checkbox" value="" id="check1" /><label for="check1"></label></div></td >' +
-    //     "<td>" +
-    //     d.id +
-    //     "</td>" +
-    //     "<td>" +
-    //     "</table>"
-    // );
+    return (
+        '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        "<thead><tr>" +
+        "<th></th>" +
+        "<th>Stage</th>" +
+        "<th></th>" +
+        "<th></th>" +
+        "<th>Month</th>" +
+        "<th>Month</th>" +
+        "<th>Day</th>" +
+        "<th>Priority</th>" +
+        "<th>Stage</th>" +
+        "<th>Msg In</th>" +
+        "<th>Update Note</th>" +
+        "</tr></thead>" +
+        "<tbody>" +
+        "<tr>" +
+        "</tr>" +
+        "</tbody>" +
+        "</table>"
+    );
 }
 
 var testdata = {

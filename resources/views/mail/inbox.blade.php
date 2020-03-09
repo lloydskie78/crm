@@ -173,7 +173,7 @@
                                 <td class="mailbox-subject"><b>AdminLTE 3.0 Issue</b> - Trying to find a solution to
                                     this problem...
                                 </td>
-                                <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
+                                <td class="mailbox-attach   ment"><i class="fas fa-paperclip"></i></td>
                                 <td class="mailbox-date">11 hours ago</td>
                             </tr>
                             <tr>
