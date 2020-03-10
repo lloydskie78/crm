@@ -1,29 +1,28 @@
-// This function is for the jquery datatable
-// $(function() {
-//     $("#example1").DataTable();
-// });
-
-var editor; // use a global for the submit and return data rendering in the examples
-
 /**
 * ! THIS IS NEEDED FOR THE PROJECT!
 
 * ! ROW GROUPING URL:
 * ! https://datatables.net/examples/advanced_init/row_grouping.html
-* ! 
+ 
 * ! CHILD ROWS URL:
 * ! https://datatables.net/examples/api/row_details.html
 * ! http://live.datatables.net/bihawepu/1/edit
 * ! http://jsfiddle.net/fe74zm38/
+
+* ! Upload csv File to Datatable
+* ! https://www.webslesson.info/2018/07/how-to-load-csv-file-in-jquery-datatables-using-ajax-php.html
+
 **/
 
 // $(function() {
 //   $("#example1").attr("height", 200);
 // });
 
+var isTabclicked = false;
+
 $(document).ready(function() {
-    debugger;
     var table = $("#example1").DataTable({
+        responsive: true,
         data: testdata.data,
         select: "single",
         columns: [
@@ -54,16 +53,10 @@ $(document).ready(function() {
                 data: "id"
             },
             {
-                data: "agency-name"
-            },
-            {
-                data: "suburb"
+                data: "agency_name"
             },
             {
                 data: "name"
-            },
-            {
-                data: "last-name"
             },
             {
                 data: "number"
@@ -72,7 +65,10 @@ $(document).ready(function() {
                 data: "email"
             },
             {
-                data: "department"
+                data: "msg_in"
+            },
+            {
+                data: "update"
             }
         ],
         order: [[2, "asc"]]
@@ -104,21 +100,6 @@ $(document).ready(function() {
             e.preventDefault();
         }
     });
-
-    // $("#example1 tbody").Tabledit({
-    //     columns: {
-    //         identifier: [2, "id"],
-    //         editable: [
-    //             [3, "agency-name"],
-    //             [4, "suburb"],
-    //             [5, "name"],
-    //             [6, "last-name"],
-    //             [7, "number"],
-    //             [8, "email"],
-    //             [9, "department"]
-    //         ]
-    //     }
-    // });
 });
 
 $(document).ready(function() {
@@ -127,12 +108,11 @@ $(document).ready(function() {
             identifier: [2, "id"],
             editable: [
                 [3, "agency-name"],
-                [4, "suburb"],
-                [5, "name"],
-                [6, "last-name"],
-                [7, "number"],
-                [8, "email"],
-                [9, "department"]
+                [4, "name"],
+                [5, "number"],
+                [6, "email"],
+                [7, "msg_in"],
+                [8, "update"]
             ]
         },
         restoreButton: false,
@@ -158,8 +138,6 @@ function format(d) {
         "<th>Day</th>" +
         "<th>Priority</th>" +
         "<th>Stage</th>" +
-        "<th>Msg In</th>" +
-        "<th>Update Note</th>" +
         "</tr></thead>" +
         "<tbody>" +
         "<tr>" +
@@ -181,10 +159,6 @@ function format(d) {
         "</td>" +
         "<td>< warm >" +
         "</td>" +
-        "<td>" +
-        "</td>" +
-        "<td>" +
-        "</td>" +
         "</tr>" +
         "<tr>" +
         "<td>opp" +
@@ -204,10 +178,6 @@ function format(d) {
         "<td>pm" +
         "</td>" +
         "<td>< low >" +
-        "</td>" +
-        "<td>" +
-        "</td>" +
-        "<td>" +
         "</td>" +
         "</tr>" +
         "<tr>" +
@@ -229,10 +199,6 @@ function format(d) {
         "</td>" +
         "<td>$0" +
         "</td>" +
-        "<td>" +
-        "</td>" +
-        "<td>" +
-        "</td>" +
         "</tr>" +
         "<tr>" +
         "<td>sold" +
@@ -252,10 +218,6 @@ function format(d) {
         "<td>wkly" +
         "</td>" +
         "<td>$0" +
-        "</td>" +
-        "<td>" +
-        "</td>" +
-        "<td>" +
         "</td>" +
         "</tr>" +
         "<tr>" +
@@ -277,10 +239,6 @@ function format(d) {
         "</td>" +
         "<td>$0" +
         "</td>" +
-        "<td>" +
-        "</td>" +
-        "<td>" +
-        "</td>" +
         "</tr>" +
         "<tr>" +
         "<td>paid" +
@@ -301,80 +259,22 @@ function format(d) {
         "</td>" +
         "<td>$0" +
         "</td>" +
-        "<td>" +
-        "</td>" +
-        "<td>" +
-        "</td>" +
         "</tr>" +
         "</tbody>" +
         "</table>"
     );
 }
 
-var testdata = {
-    data: [
-        {
-            id: "1",
-            "agency-name": "Kay Burton",
-            suburb: "South Yara",
-            name: "JUSTIN",
-            "last-name": "",
-            number: "0 400 001",
-            email: "example@kayburton.com.au",
-            department: "Manager"
-        },
-        {
-            id: "2",
-            "agency-name": "O'Brien",
-            suburb: "Chelsea",
-            name: "Bronwyn",
-            "last-name": "Payne",
-            number: "0 400 002",
-            email: "bronwyn.payne@obre.com.au",
-            department: "Sales"
-        },
-        {
-            id: "3",
-            "agency-name": "O'Brien",
-            suburb: "Hastings",
-            name: "Bronwyn",
-            "last-name": "Payne",
-            number: "0 400 003",
-            email: "hastings.payne@obre.com.au",
-            department: "Sales"
-        },
-        {
-            id: "4",
-            "agency-name": "Ray White",
-            suburb: "Ferntree Gully",
-            name: "Kirsty",
-            "last-name": "Edwards",
-            number: "0 400 004",
-            email: "kirsty.edwards@raywhite.com.au",
-            department: "Sales"
-        },
-        {
-            id: "5",
-            "agency-name": "Barry Plant",
-            suburb: "Keysborough",
-            name: "Cathy",
-            "last-name": "Mcrae",
-            number: "0 400 005",
-            email: "cdunlo@barryplant.com.au",
-            department: "Sales"
-        },
-        {
-            id: "6",
-            "agency-name": "Hocking Stuart",
-            suburb: "Frankston",
-            name: "Holly",
-            "last-name": "Bowman",
-            number: "0 400 006",
-            email: "hbowman@hockingstuart.com.au",
-            department: "Sales"
-        }
-    ]
-};
+$(".custom-file-input").on("change", function() {
+    var fileName = $(this)
+        .val()
+        .split("\\")
+        .pop();
+    $(this)
+        .siblings(".custom-file-label")
+        .addClass("selected")
+        .html(fileName);
+});
 
 // This function is for the table drag and drop
 $(function() {
@@ -395,6 +295,17 @@ $(function() {
         })
         .disableSelection();
 });
+
+// For summernote textarea
+$(document).ready(function() {
+    $("#sumnote1").summernote({
+        height: 150
+    });
+    $("#sumnote2").summernote({
+        height: 200
+    });
+});
+
 //Enable check and uncheck all functionality
 $(function() {
     $(".checkbox-toggle").click(function() {
@@ -415,6 +326,92 @@ $(function() {
                 .removeClass("fa-square")
                 .addClass("fa-check-square");
         }
-        $(this).data("clicks", !clicks);
+        $(this).data("cli   cks", !clicks);
     });
 });
+//  Clear Modal
+$("#contactModal").on("hidden.bs.modal", function() {
+    $(this)
+        .find("input,textarea,select,file")
+        .val("")
+        .end();
+});
+
+// For tab click
+$("#tab1").on("click", function() {
+    isTabclicked = false;
+    // alert("tab no 1 is clicked....");
+});
+$("#tab2").on("click", function() {
+    isTabclicked = true;
+    // alert("tab no 2 is clicked....");
+});
+
+// Exec when Save button clicked
+$("#saveButton").on("click", function() {
+    if (isTabclicked == true) {
+        alert("tab no 2 is clicked....");
+    } else {
+        alert("tab no 1 is clicked....");
+    }
+});
+
+// JSON data for data table
+var testdata = {
+    data: [
+        {
+            id: "1",
+            agency_name: "Kay Burton",
+            name: "JUSTIN",
+            number: "0 400 001",
+            email: "example@kayburton.com.au",
+            msg_in: "",
+            update: ""
+        },
+        {
+            id: "2",
+            agency_name: "O'Brien",
+            name: "Bronwyn",
+            number: "0 400 002",
+            email: "bronwyn.payne@obre.com.au",
+            msg_in: "",
+            update: ""
+        },
+        {
+            id: "3",
+            agency_name: "O'Brien",
+            name: "Bronwyn",
+            number: "0 400 003",
+            email: "hastings.payne@obre.com.au",
+            msg_in: "",
+            update: ""
+        },
+        {
+            id: "4",
+            agency_name: "Ray White",
+            name: "Kirsty",
+            number: "0 400 004",
+            email: "kirsty.edwards@raywhite.com.au",
+            msg_in: "",
+            update: ""
+        },
+        {
+            id: "5",
+            agency_name: "Barry Plant",
+            name: "Cathy",
+            number: "0 400 005",
+            email: "cdunlo@barryplant.com.au",
+            msg_in: "",
+            update: ""
+        },
+        {
+            id: "6",
+            agency_name: "Hocking Stuart",
+            name: "Holly",
+            number: "0 400 006",
+            email: "hbowman@hockingstuart.com.au",
+            msg_in: "",
+            update: ""
+        }
+    ]
+};

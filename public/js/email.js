@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    $("#body").summernote({
+        height: 450
+    });
+});
+
 $(function() {
     //Enable check and uncheck all functionality
     $(".checkbox-toggle").click(function() {
