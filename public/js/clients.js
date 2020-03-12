@@ -23,54 +23,7 @@ var isTabclicked = false;
 $(document).ready(function() {
     var table = $("#example1").DataTable({
         responsive: true,
-        data: testdata.data,
         select: "single",
-        columns: [
-            {
-                className: "icheck-primary",
-                orderable: false,
-                data: null,
-                defaultContent: "",
-                render: function() {
-                    return (
-                        '<input type="checkbox" value="" id="check1" />' +
-                        '<label for="check1"></label>'
-                    );
-                },
-                width: "13px"
-            },
-            {
-                className: "details-control",
-                orderable: false,
-                data: null,
-                defaultContent: "",
-                render: function() {
-                    return '<i class="fa fa-plus-square" aria-hidden=clear"true"></i>';
-                },
-                width: "15px"
-            },
-            {
-                data: "id"
-            },
-            {
-                data: "agency_name"
-            },
-            {
-                data: "name"
-            },
-            {
-                data: "number"
-            },
-            {
-                data: "email"
-            },
-            {
-                data: "msg_in"
-            },
-            {
-                data: "update"
-            }
-        ],
         order: [[2, "asc"]]
     });
 
