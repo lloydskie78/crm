@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="{{asset('designs/plugins/fontawesome-free/css/all.min.css')}}" />
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-    <!-- Tempusdominus Bbootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{asset('designs/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}" />
+
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('designs/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}" />
     <!-- JQVMap -->
@@ -321,8 +319,7 @@
     <!-- DataTables -->
     <script src="{{asset('designs/plugins/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{asset('designs/plugins/datatables-bs4/js/dataTables.bootstrap4.js')}}"></script>
-    <!-- daterangepicker -->
-    <script src="{{asset('designs/plugins/moment/moment.min.js')}}p"></script>
+
     <script src="{{asset('designs/plugins/daterangepicker/daterangepicker.js')}}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="{{asset('designs/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>

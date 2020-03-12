@@ -265,8 +265,10 @@
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                <form id="upload_csv" method="POST" enctype="multipart/form-data">
+                                    <input type="file" class="custom-file-input" id="customFile" accept=".csv">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -274,7 +276,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveButton">Save changes</button>
+                {{-- <button type="button" class="btn btn-primary" id="saveButton">Save changes</button> --}}
+                <input type="submit" name="upload" id="saveButton" value="Save changes" class="btn btn-primary"
+                    onclick="getFile()" />
             </div>
         </div>
     </div>

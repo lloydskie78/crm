@@ -326,7 +326,7 @@ $(function() {
                 .removeClass("fa-square")
                 .addClass("fa-check-square");
         }
-        $(this).data("cli   cks", !clicks);
+        $(this).data("clicks", !clicks);
     });
 });
 //  Clear Modal
@@ -350,11 +350,45 @@ $("#tab2").on("click", function() {
 // Exec when Save button clicked
 $("#saveButton").on("click", function() {
     if (isTabclicked == true) {
-        alert("tab no 2 is clicked....");
+        function opsi(data) {
+            var allRows = data.split(/\r?\n|\r/);
+            var table = "<";
+        }
     } else {
-        alert("tab no 1 is clicked....");
+        // alert("tab no 1 is clicked....");
     }
 });
+
+// For .csv file submission
+function getFile() {
+    var file = document.getElementById("customFile").files[0];
+    var reader = new FileReader();
+    reader.onload = function(progressEvent) {
+        var lines = this.result.split("\n");
+        for (var line = 0; line < lines.length; line++) {
+            columns = lines[line].split(",");
+            id = columns[2];
+            agency_name = columns[3];
+            name = columns[4];
+            number = columns[5];
+            email = columns[6];
+            msg_in = columns[7];
+            update = columns[8];
+
+            var json_person = JSON.stringify({
+                id: id,
+                agency_name: agency_name,
+                name: name,
+                number: number,
+                email: email,
+                msg_in: msg_in,
+                update: update
+            });
+            console.log(json_person);
+        }
+    };
+    reader.readAsText(file);
+}
 
 // JSON data for data table
 var testdata = {
