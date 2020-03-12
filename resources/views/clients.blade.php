@@ -31,170 +31,37 @@
                         <th>Update</th>
                     </tr>
                 </thead>
-                {{-- <tbody>
+                <tbody>
+                    @foreach($clients as $key => $emp)
                     <tr>
-                        <td>
-                            <div class="icheck-primary">
-                                <input type="checkbox" value="" id="check1" />
-                                <label for="check1"></label>
-                            </div>
+                        <td class="icheck-primary" style="width: 13px;">
+                            <input type="checkbox" value="" id="check1" />
+                            <label for="check1"></label>
                         </td>
-                        <td>1</td>
-                        <td>Kay Burton</td>
-                        <td>South Yara</td>
-                        <td>JUSTIN</td>
-                        <td></td>
-                        <td>0 400 001</td>
-                        <td>example@kayburton.com.au</td>
-                        <td>Manager</td>
-                        <td>
-                            <div class="actions" style="text-align:center; ">   
-                                <a type="button" class="btn btn-warning" id="edit-contact"><i class="fas fa-edit"
-                                        style="color:dark"></i></a>
-                                <a type="button" class="btn btn-danger" id="delete-contact"><i class="fas fa-trash-alt"
-                                        style="color:dark"></i></a>
-                            </div>
+                        <td class="details-control" style="width: 13px;">
+                            <i class="fa fa-plus-square" aria-hidden=clear"true"></i>
                         </td>
+                        <td>{{ $emp->id }}</td>
+                        <td>{{ $emp->agency_name }}</td>
+                        <td>{{ $emp->name }}</td>
+                        <td>{{ $emp->number }}</td>
+                        <td>{{ $emp->email }}</td>
+                        <td>{{ $emp->msg_in }}</td>
+                        <td>{{ $emp->update }}</td>
+
+                        <!-- we will also add show, edit, and delete buttons -->
+                        {{-- <td>
+
+                            <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
+                            <a class="btn btn-small btn-success" href="{{ URL::to('employee/' . $emp->id) }}">Show</a>
+
+                        <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
+                        <a class="btn btn-small btn-info" href="{{ URL::to('employee/' . $emp->id . '/edit')}}">Edit</a>
+
+                        </td> --}}
                     </tr>
-                    <tr>
-                        <td>
-                            <div class="icheck-primary">
-                                <input type="checkbox" value="" id="check2" />
-                                <label for="check2"></label>
-                            </div>
-                        </td>
-                        <td>2</td>
-                        <td>O'Brien</td>
-                        <td>Chelsea</td>
-                        <td>Bronwyn</td>
-                        <td>Payne</td>
-                        <td>0 400 002</td>
-                        <td>bronwyn.payne@obre.com.au</td>
-                        <td>Sales</td>
-                        <td>
-                            <div class="actions" style="text-align:center; ">
-                                <a type="button" class="btn btn-warning" id="edit-contact"><i class="fas fa-edit"
-                                        style="color:dark"></i></a>
-                                <a type="button" class="btn btn-danger" id="delete-contact"><i class="fas fa-trash-alt"
-                                        style="color:dark"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="icheck-primary">
-                                <input type="checkbox" value="" id="check3" />
-                                <label for="check3"></label>
-                            </div>
-                        </td>
-                        <td>3</td>
-                        <td>O'Brien</td>
-                        <td>Hastings</td>
-                        <td>Bronwyn</td>
-                        <td>Payne</td>
-                        <td>0 400 003</td>
-                        <td>bronwyn.payne@obre.com.au</td>
-                        <td>Sales</td>
-                        <td>
-                            <div class="actions" style="text-align:center; ">
-                                <a type="button" class="btn btn-warning" id="edit-contact"><i class="fas fa-edit"
-                                        style="color:dark"></i></a>
-                                <a type="button" class="btn btn-danger" id="delete-contact"><i class="fas fa-trash-alt"
-                                        style="color:dark"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="icheck-primary">
-                                <input type="checkbox" value="" id="check4" />
-                                <label for="check4"></label>
-                            </div>
-                        </td>
-                        <td>4</td>
-                        <td>Ray White</td>
-                        <td>Ferntree Gully</td>
-                        <td>Kirsty</td>
-                        <td>Edwards</td>
-                        <td>0 400 004</td>
-                        <td>kirsty.edwards@raywhite.com.au</td>
-                        <td>Sales</td>
-                        <td>
-                            <div class="actions" style="text-align:center; ">
-                                <a type="button" class="btn btn-warning" id="edit-contact"><i class="fas fa-edit"
-                                        style="color:dark"></i></a>
-                                <a type="button" class="btn btn-danger" id="delete-contact"><i class="fas fa-trash-alt"
-                                        style="color:dark"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="icheck-primary">
-                                <input type="checkbox" value="" id="check4" />
-                                <label for="check4"></label>
-                            </div>
-                        </td>
-                        <td>5</td>
-                        <td>Barry Plant</td>
-                        <td>Keysborough</td>
-                        <td>Cathy</td>
-                        <td>Mcrae</td>
-                        <td>0 400 005</td>
-                        <td>cdunlo@barryplant.com.au</td>
-                        <td>Sales</td>
-                        <td>
-                            <div class="actions" style="text-align:center; ">
-                                <a type="button" class="btn btn-warning" id="edit-contact"><i class="fas fa-edit"
-                                        style="color:dark"></i></a>
-                                <a type="button" class="btn btn-danger" id="delete-contact"><i class="fas fa-trash-alt"
-                                        style="color:dark"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="icheck-primary">
-                                <input type="checkbox" value="" id="check4" />
-                                <label for="check4"></label>
-                            </div>
-                        </td>
-                        <td>6</td>
-                        <td>Hocking Stuart</td>
-                        <td>Frankston</td>
-                        <td>Holly</td>
-                        <td>Bowman</td>
-                        <td>0 400 006</td>
-                        <td>hbowman@hockingstuart.com.au</td>
-                        <td>Sales</td>
-                        <td>
-                            <div class="actions" style="text-align:center; ">
-                                <a type="button" class="btn btn-warning" id="edit-contact"><i class="fas fa-edit"
-                                        style="color:dark"></i></a>
-                                <a type="button" class="btn btn-danger" id="delete-contact"><i class="fas fa-trash-alt"
-                                        style="color:dark"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody> --}}
-                {{-- <tfoot>
-                    <tr>
-                        <th>
-                            <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                                <i class="far fa-square"></i>
-                            </button>
-                        </th>
-                        <th></th>
-                        <th>ID</th>
-                        <th>Agency Name</th>
-                        <th>Suburb</th>
-                        <th>Name</th>
-                        <th>Last Name</th>
-                        <th>Number</th>
-                        <th>Email</th>
-                        <th>Department</th>
-                    </tr>
-                </tfoot> --}}
+                    @endforeach
+                </tbody>
             </table>
         </div>
     </div>
@@ -277,8 +144,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 {{-- <button type="button" class="btn btn-primary" id="saveButton">Save changes</button> --}}
-                <input type="submit" name="upload" id="saveButton" value="Save changes" class="btn btn-primary"
-                    onclick="getFile()" />
+                <button type="button" name="upload" id="saveButton" value="Save changes" class="btn btn-primary"
+                    onclick="getFile()">Save changes</button>
             </div>
         </div>
     </div>
