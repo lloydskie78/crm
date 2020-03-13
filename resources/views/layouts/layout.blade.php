@@ -283,7 +283,7 @@
                 <a href="http://adminlte.io">CRM</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-                Designed and developed by <a href="http://infosoftstudio.com"><b>InfoSoftStudio</b></a>
+                Designed and developed by <a href="#"><b>Sumo Media Pty Ltd</b></a>
             </div>
         </footer>
 

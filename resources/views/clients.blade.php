@@ -68,18 +68,19 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bd-example-modal-xl" id="contactModal" tabindex="-1" role="dialog"
-    aria-labelledby="contactModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="contactModalLabel">Add Contact</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
+<form id="upload_csv" method="POST" action="{{ url("/uploadFile") }}" enctype="multipart/form-data">
+    <div class="modal fade bd-example-modal-xl" id="contactModal" tabindex="-1" role="dialog"
+        aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactModalLabel">Add Contact</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
 
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" id="tab1">
@@ -133,25 +134,24 @@
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab">
                             <div class="custom-file">
-                                <form id="upload_csv" method="POST" action="{{ url("/uploadFile") }}"
-                                    enctype="multipart/form-data">
-                                    {{ csrf_field() }}
-                                    <input type="file" class="custom-file-input" id="customFile" name="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </form>
+                                {{ csrf_field() }}
+                                <input type="file" class="custom-file-input" id="customFile" name="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" name="submit" id="saveButton" value="Save changes" class="btn btn-primary">Save
-                    changes</button>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button onlick="submit()" type="submit" name="submit" id="saveButton" value="Save changes"
+                        class="btn btn-primary">Save
+                        changes</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 @endsection
 
 @section('scripts')

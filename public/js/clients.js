@@ -312,10 +312,9 @@ $("#saveButton").on("click", function() {
     }
 });
 
-// function submit() {
-//     alert;
-//     $("#upload_csv").submit();
-// }
+function submit() {
+    $("#upload_csv").submit();
+}
 
 // For .csv file submission
 // function getFile() {
