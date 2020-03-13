@@ -80,6 +80,7 @@
             </div>
             <div class="modal-body">
                 <form>
+
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" id="tab1">
                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
@@ -132,8 +133,10 @@
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab">
                             <div class="custom-file">
-                                <form id="upload_csv" method="POST" enctype="multipart/form-data">
-                                    <input type="file" class="custom-file-input" id="customFile" accept=".csv">
+                                <form id="upload_csv" method="POST" action="{{ url("/uploadFile") }}"
+                                    enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <input type="file" class="custom-file-input" id="customFile" name="customFile">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </form>
                             </div>
@@ -143,9 +146,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                {{-- <button type="button" class="btn btn-primary" id="saveButton">Save changes</button> --}}
-                <button type="button" name="upload" id="saveButton" value="Save changes" class="btn btn-primary"
-                    onclick="getFile()">Save changes</button>
+                <button type="submit" name="submit" id="saveButton" value="Save changes" class="btn btn-primary">Save
+                    changes</button>
             </div>
         </div>
     </div>

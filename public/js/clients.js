@@ -312,59 +312,64 @@ $("#saveButton").on("click", function() {
     }
 });
 
+// function submit() {
+//     alert;
+//     $("#upload_csv").submit();
+// }
+
 // For .csv file submission
-function getFile() {
-    var file = document.getElementById("customFile").files[0];
-    var reader = new FileReader();
-    reader.onload = function(progressEvent) {
-        var lines = this.result.split("\n");
-        var hold = [];
+// function getFile() {
+//     var file = document.getElementById("customFile").files[0];
+//     var reader = new FileReader();
+//     reader.onload = function(progressEvent) {
+//         var lines = this.result.split("\n");
+//         var hold = [];
 
-        for (var line = 0; line < lines.length; line++) {
-            var skipFlag = false;
-            columns = lines[line].split(",");
+//         for (var line = 0; line < lines.length; line++) {
+//             var skipFlag = false;
+//             columns = lines[line].split(",");
 
-            for (var column = 0; column < columns.length; column++) {
-                columns[column] = columns[column].replace("\r", "");
-                if (columns[column] == "" || columns[column] == null) {
-                    skipFlag = true;
-                }
-            }
+//             for (var column = 0; column < columns.length; column++) {
+//                 columns[column] = columns[column].replace("\r", "");
+//                 if (columns[column] == "" || columns[column] == null) {
+//                     skipFlag = true;
+//                 }
+//             }
 
-            if (skipFlag) {
-                continue;
-            }
+//             if (skipFlag) {
+//                 continue;
+//             }
 
-            agency_name = columns[0];
-            name = columns[1];
-            number = columns[2];
-            email = columns[3];
-            msg_in = columns[4];
-            update = columns[5];
+//             agency_name = columns[0];
+//             name = columns[1];
+//             number = columns[2];
+//             email = columns[3];
+//             msg_in = columns[4];
+//             update = columns[5];
 
-            var json_person = {
-                agency_name: agency_name,
-                name: name,
-                number: number,
-                email: email,
-                msg_in: msg_in,
-                update: update
-            };
-            hold.push(json_person);
-            console.log(hold);
-        }
+//             var json_person = {
+//                 agency_name: agency_name,
+//                 name: name,
+//                 number: number,
+//                 email: email,
+//                 msg_in: msg_in,
+//                 update: update
+//             };
+//             hold.push(json_person);
+//             console.log(hold);
+//         }
 
-        $.ajax({
-            url: "/admin/clientstore",
-            method: "GET",
-            dataType: "json",
-            data: {
-                clientdetails: hold
-            }
-        });
-    };
-    reader.readAsText(file);
-}
+//         $.ajax({
+//             url: "/admin/clientstore",
+//             method: "GET",
+//             dataType: "json",
+//             data: {
+//                 clientdetails: hold
+//             }
+//         });
+//     };
+//     reader.readAsText(file);
+// }
 
 // JSON data for data table
 // var testdata = {
