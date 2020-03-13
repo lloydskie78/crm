@@ -19,7 +19,7 @@ Route::get('/admin', function () {
     return view('layouts.layout');
 });
 
-    
+
 Route::get('/admin/inbox', 'MailController@inbox')->name('inbox');
 Route::get('/admin/compose', 'MailController@compose')->name('compose');
 
@@ -28,5 +28,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/clients', 'ClientController@index');
-
-
+Route::post('/uploadFile', 'ClientController@uploadFile');

@@ -2,10 +2,17 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class ClientModel extends Model
 {
-    protected $guarded = [];
+    public static function insertData($data)
+    {
 
+        $value = DB::table('client_models')->where('name', $data['name'])->get();
+        if ($value->count() == 0) {
+            DB::table('client_models')->insert($data);
+        }
+    }
 }
