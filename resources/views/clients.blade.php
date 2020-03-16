@@ -68,7 +68,9 @@
 </div>
 
 <!-- Modal -->
-<form id="upload_csv" method="POST" action="{{ url("/uploadFile") }}" enctype="multipart/form-data">
+<form id="upload_csv" method="POST" action="{{ url("/insertData") }}" enctype="multipart/form-data">
+    {{ csrf_field() }}
+    <input type="hidden" value="false" id="tabber" name="tabber">
     <div class="modal fade bd-example-modal-xl" id="contactModal" tabindex="-1" role="dialog"
         aria-labelledby="contactModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
@@ -80,8 +82,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
-
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                         <li class="nav-item" id="tab1">
                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
@@ -99,48 +99,48 @@
                             <div class="form-row">
                                 <div class="form-group col-md">
                                     <label for="inputAgencyName">Agency Name</label>
-                                    <input type="text" class="form-control" id="agency-name">
+                                    <input type="text" class="form-control" id="agency-name" name="agency-name">
                                 </div>
                                 <div class="form-group col-md">
                                     <label for="inputFirstName">First Name</label>
-                                    <input type="text" class="form-control" id="first-name">
+                                    <input type="text" class="form-control" id="first-name" name="first-name">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md">
                                     <label for="inputEmail">Email</label>
-                                    <input type="email" class="form-control" id="email">
+                                    <input type="email" class="form-control" id="email" name="email">
                                 </div>
                                 <div class="form-group col-md">
                                     <label for="inputNumber">Number</label>
-                                    <input type="text" class="form-control" id="number">
+                                    <input type="text" class="form-control" id="number" name="number">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md">
                                     <label for="inputMsgIn">Msg In</label>
                                     {{-- <textarea class="form-control col-xs-12" name="msg" id="msg-in" rows="5"></textarea> --}}
-                                    <div class="summernote" id="sumnote1"></div>
+                                    <textarea class="msg_in" id="msg_in" name="msg_in"></textarea>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md">
                                     <label for="inputUpdate">Update</label>
                                     {{-- <textarea class="form-control col-xs-12" name="update" id="update" rows="7"></textarea> --}}
-                                    <div class="summernote" id="sumnote2"></div>
+                                    {{-- <div class="summernote" id="sumnote2"></div> --}}
+                                    <textarea class="update" id="update" name="update"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab">
                             <div class="custom-file">
-                                {{ csrf_field() }}
+
                                 <input type="file" class="custom-file-input" id="customFile" name="customFile">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="{{asset('designs/plugins/fontawesome-free/css/all.min.css')}}" />
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-
     <!-- iCheck -->
     <link rel="stylesheet" href="{{asset('designs/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}" />
     <!-- JQVMap -->
@@ -314,6 +313,8 @@
     <!-- JQVMap -->
     <script src="{{asset('designs/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
     <script src="{{asset('designs/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+    <!-- Popper -->
+    <script src="{{asset('designs/plugins/popper/popper.min.js')}}"></script>
     <!-- jQuery Knob Chart -->
     <script src="{{asset('designs/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
     <!-- DataTables -->

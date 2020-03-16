@@ -28,5 +28,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/clients', 'ClientController@index');
-Route::get('/uploadFile', 'ClientController@index');
-Route::post('/uploadFile', 'ClientController@uploadFile');
+
+Route::post('/insertData', 'ClientController@insertData');

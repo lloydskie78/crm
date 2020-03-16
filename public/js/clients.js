@@ -257,11 +257,11 @@ $(function() {
 
 // For summernote textarea
 $(document).ready(function() {
-    $("#sumnote1").summernote({
-        height: 150
-    });
-    $("#sumnote2").summernote({
+    $(".update").summernote({
         height: 200
+    });
+    $(".msg_in").summernote({
+        height: 150
     });
 });
 
@@ -300,10 +300,12 @@ $("#contactModal").on("hidden.bs.modal", function() {
 $("#tab1").on("click", function() {
     isTabclicked = false;
     // alert("tab no 1 is clicked....");
+    $("#tabber").val(isTabclicked);
 });
 $("#tab2").on("click", function() {
     isTabclicked = true;
     // alert("tab no 2 is clicked....");
+    $("#tabber").val(isTabclicked);
 });
 
 // Exec when Save button clicked
@@ -321,117 +323,3 @@ $("#saveButton").on("click", function() {
 function submit() {
     $("#upload_csv").submit();
 }
-
-// For .csv file submission
-// function getFile() {
-//     var file = document.getElementById("customFile").files[0];
-//     var reader = new FileReader();
-//     reader.onload = function(progressEvent) {
-//         var lines = this.result.split("\n");
-//         var hold = [];
-
-//         for (var line = 0; line < lines.length; line++) {
-//             var skipFlag = false;
-//             columns = lines[line].split(",");
-
-//             for (var column = 0; column < columns.length; column++) {
-//                 columns[column] = columns[column].replace("\r", "");
-//                 if (columns[column] == "" || columns[column] == null) {
-//                     skipFlag = true;
-//                 }
-//             }
-
-//             if (skipFlag) {
-//                 continue;
-//             }
-
-//             agency_name = columns[0];
-//             name = columns[1];
-//             number = columns[2];
-//             email = columns[3];
-//             msg_in = columns[4];
-//             update = columns[5];
-
-//             var json_person = {
-//                 agency_name: agency_name,
-//                 name: name,
-//                 number: number,
-//                 email: email,
-//                 msg_in: msg_in,
-//                 update: update
-//             };
-//             hold.push(json_person);
-//             console.log(hold);
-//         }
-
-//         $.ajax({
-//             url: "/admin/clientstore",
-//             method: "GET",
-//             dataType: "json",
-//             data: {
-//                 clientdetails: hold
-//             }
-//         });
-//     };
-//     reader.readAsText(file);
-// }
-
-// JSON data for data table
-// var testdata = {
-//     data: [
-//         {
-//             id: "1",
-//             agency_name: "Kay Burton",
-//             name: "JUSTIN",
-//             number: "0 400 001",
-//             email: "example@kayburton.com.au",
-//             msg_in: "",
-//             update: ""
-//         },
-//         {
-//             id: "2",
-//             agency_name: "O'Brien",
-//             name: "Bronwyn",
-//             number: "0 400 002",
-//             email: "bronwyn.payne@obre.com.au",
-//             msg_in: "",
-//             update: ""
-//         },
-//         {
-//             id: "3",
-//             agency_name: "O'Brien",
-//             name: "Hastings",
-//             number: "0 400 003",
-//             email: "hastings.payne@obre.com.au",
-//             msg_in: "",
-//             update: ""
-//         },
-//         {
-//             id: "4",
-//             agency_name: "Ray White",
-//             name: "Kirsty",
-//             number: "0 400 004",
-//             email: "kirsty.edwards@raywhite.com.au",
-//             msg_in: "",
-//             update: ""
-//         },
-//         {
-//             id: "5",
-//             agency_name: "Barry Plant",
-//             name: "Cathy",
-//             number: "0 400 005",
-//             email: "cdunlo@barryplant.com.au",
-//             msg_in: "",
-//             update: ""
-//         },
-//         {
-//             id: "6",
-//             agency_name: "Hocking Stuart",
-//             name: "Holly",
-//             number: "0 400 006",
-//             email: "hbowman@hockingstuart.com.au",
-//             msg_in: "",
-//             update: ""
-//         }
-//     ]
-// };

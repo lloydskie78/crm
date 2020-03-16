@@ -20,73 +20,95 @@ class ClientController extends Controller
         return view('clients', compact('clients'));
     }
 
-    public function uploadFile(Request $request)
+    public function insertData(Request $request)
     {
 
-        if ($request->input('submit') != null) {
+        if ($request->input('tabber') == "true") {
+            if ($request->input('submit') != null) {
 
-            $file = $request->file('customFile');
+                $file = $request->file('customFile');
 
-            $filename = $file->getClientOriginalName();
-            $extension = $file->getClientOriginalExtension();
-            // $tempPath = $file->getRealPath();
-            // $fileSize = $file->getSize();
-            // $mimeType = $file->getMimeType();
+                $filename = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                // $tempPath = $file->getRealPath();
+                // $fileSize = $file->getSize();
+                // $mimeType = $file->getMimeType();
 
-            // Valid File Extensions
-            $valid_extension = array("csv");
+                // Valid File Extensions
+                $valid_extension = array("csv");
 
-            // Check file extension
-            if (in_array(strtolower($extension), $valid_extension)) {
+                // Check file extension
+                if (in_array(strtolower($extension), $valid_extension)) {
 
-                // File upload location
-                $location = 'uploads';
+                    // File upload location
+                    $location = 'uploads';
 
-                // Upload file
-                $file->move($location, $filename);
+                    // Upload file
+                    $file->move($location, $filename);
 
-                // Import CSV to Database
-                $filepath = public_path($location . "/" . $filename);
+                    // Import CSV to Database
+                    $filepath = public_path($location . "/" . $filename);
 
-                // Reading file
-                $file = fopen($filepath, "r");
+                    // Reading file
+                    $file = fopen($filepath, "r");
 
-                $importData_arr = array();
-                $i = 0;
+                    $importData_arr = array();
+                    $i = 0;
 
-                while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
-                    $num = count($filedata);
+                    while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
+                        $num = count($filedata);
 
-                    // Skip first row (Remove below comment if you want to skip the first row)
-                    if ($i == 0) {
+                        // Skip first row (Remove below comment if you want to skip the first row)
+                        // if ($i == 0) {
+                        //     $i++;
+                        //     continue;
+                        // }
+                        for ($c = 0; $c < $num; $c++) {
+                            $importData_arr[$i][] = $filedata[$c];
+                        }
                         $i++;
-                        continue;
                     }
-                    for ($c = 0; $c < $num; $c++) {
-                        $importData_arr[$i][] = $filedata[$c];
+                    fclose($file);
+
+                    // Insert to MySQL database
+                    foreach ($importData_arr as $importData) {
+
+                        $insertData = array(
+                            "agency_name" => $importData[0],
+                            "name" => $importData[1],
+                            "number" => $importData[2],
+                            "email" => $importData[3],
+                            "msg_in" => $importData[4],
+                            "update" => $importData[5]
+                        );
+                        ClientModel::create($insertData);
                     }
-                    $i++;
+                    Session::flash('message', 'Import Successful.');
+                } else {
+                    Session::flash('message', 'Invalid File Extension.');
                 }
-                fclose($file);
-
-                // Insert to MySQL database
-                foreach ($importData_arr as $importData) {
-
-                    $insertData = array(
-                        "agency_name" => $importData[0],
-                        "name" => $importData[1],
-                        "number" => $importData[2],
-                        "email" => $importData[3],
-                        "msg_in" => $importData[4],
-                        "update" => $importData[5]
-                    );
-                    ClientModel::create($insertData);
-                }
-                Session::flash('message', 'Import Successful.');
-            } else {
-                Session::flash('message', 'Invalid File Extension.');
             }
+        } else {
+
+            $client = new ClientModel;
+
+            $client->agency_name = $request->input('agency-name');
+            $client->name = $request->input('first-name');
+            $client->number = $request->input('number');
+            $client->email = $request->input('email');
+            $client->msg_in = $request->input('msg_in');
+            $client->update = $request->input('update');
+
+            $client->save();
+
+            // $rules = array(
+            //     'agency_name' => 'required',
+            //     'name' => 'required',
+            //     'number' => 'required',
+            // );
         }
+
+
         // Redirect to index
         return redirect()->action('ClientController@index');
     }
