@@ -9,9 +9,6 @@
 * ! http://live.datatables.net/bihawepu/1/edit
 * ! http://jsfiddle.net/fe74zm38/
 
-* ! Upload csv File to Datatable
-* ! https://www.webslesson.info/2018/07/how-to-load-csv-file-in-jquery-datatables-using-ajax-php.html
-
 **/
 
 // $(function() {
@@ -23,13 +20,18 @@ var isTabclicked = false;
 $(document).ready(function() {
     var table = $("#example1").DataTable({
         responsive: true,
-        select: "single",
         columnDefs: [
             {
-                targets: [0, 1],
+                targets: [0, 0],
+                checkboxes: {
+                    selectRow: true
+                },
                 orderable: false
             }
         ],
+        select: {
+            style: "multi"
+        },
         order: [[2, "asc"]]
     });
 
@@ -255,8 +257,9 @@ $(function() {
         .disableSelection();
 });
 
-// For summernote textarea
+// For summernote textarea`
 $(document).ready(function() {
+    w;
     $(".update").summernote({
         height: 200
     });
@@ -266,28 +269,37 @@ $(document).ready(function() {
 });
 
 //Enable check and uncheck all functionality
-$(function() {
-    $(".checkbox-toggle").click(function() {
-        var clicks = $(this).data("clicks");
-        if (clicks) {
-            //Uncheck all checkboxes
-            $(".mailbox-messages input[type='checkbox']").prop(
-                "checked",
-                false
-            );
-            $(".checkbox-toggle .far.fa-check-square")
-                .removeClass("fa-check-square")
-                .addClass("fa-square");
-        } else {
-            //Check all checkboxes
-            $(".mailbox-messages input[type='checkbox']").prop("checked", true);
-            $(".checkbox-toggle .far.fa-square")
-                .removeClass("fa-square")
-                .addClass("fa-check-square");
-        }
-        $(this).data("clicks", !clicks);
-    });
+
+$(".checkbox-toggle").click(function(e) {
+    alert("Hellow");
+    $(this)
+        .closest("table")
+        .find("td input:checkbox")
+        .prop("checked", this.checked);
 });
+
+// $(document).ready(function() {
+//     $(".checkbox-toggle").click(function() {
+//         var clicks = $(this).data("clicks");
+//         if (clicks) {
+//             //Uncheck all checkboxes
+//             $(".mailbox-messages input[type='checkbox']").prop(
+//                 "checked",
+//                 false
+//             );
+//             $(".checkbox-toggle .far.fa-check-square")
+//                 .removeClass("fa-check-square")
+//                 .addClass("fa-square");
+//         } else {
+//             //Check all checkboxes
+//             $(".mailbox-messages input[type='checkbox']").prop("checked", true);
+//             $(".checkbox-toggle .far.fa-square")
+//                 .removeClass("fa-square")
+//                 .addClass("fa-check-square");
+//         }
+//         $(this).data("clicks", !clicks);
+//     });
+// });
 //  Clear Modal
 $("#contactModal").on("hidden.bs.modal", function() {
     $(this)

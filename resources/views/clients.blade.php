@@ -16,11 +16,12 @@
             <table class="table table-bordered table-hover" id="example1">
                 <thead>
                     <tr>
-                        <th>
+                        {{-- <th>
                             <button type="button" class="btn btn-default btn-sm checkbox-toggle">
                                 <i class="far fa-square"></i>
                             </button>
-                        </th>
+                        </th> --}}
+                        <th></th>
                         <th></th>
                         <th>ID</th>
                         <th>Agency Name</th>
@@ -33,32 +34,32 @@
                 </thead>
                 <tbody>
                     @foreach($clients as $key => $emp)
-                    <tr>
+                    {{-- <tr>
                         <td class="icheck-primary" style="width: 13px;">
-                            <input type="checkbox" value="" id="check1" />
                             <label for="check1"></label>
-                        </td>
-                        <td class="details-control" style="width: 13px;">
-                            <i class="fa fa-plus-square" aria-hidden=clear"true"></i>
-                        </td>
-                        <td>{{ $emp->id }}</td>
-                        <td>{{ $emp->agency_name }}</td>
-                        <td>{{ $emp->name }}</td>
-                        <td>{{ $emp->number }}</td>
-                        <td>{{ $emp->email }}</td>
-                        <td>{{ $emp->msg_in }}</td>
-                        <td>{{ $emp->update }}</td>
+                        </td> --}}
+                    <td></td>
+                    <td class="details-control" style="width: 13px;">
+                        <i class="fa fa-plus-square" aria-hidden=clear"true"></i>
+                    </td>
+                    <td>{{ $emp->id }}</td>
+                    <td>{{ $emp->agency_name }}</td>
+                    <td>{{ $emp->name }}</td>
+                    <td>{{ $emp->number }}</td>
+                    <td>{{ $emp->email }}</td>
+                    <td>{{ $emp->msg_in }}</td>
+                    <td>{{ $emp->update }}</td>
 
-                        <!-- we will also add show, edit, and delete buttons -->
-                        {{-- <td>
+                    <!-- we will also add show, edit, and delete buttons -->
+                    {{-- <td>
 
                             <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
                             <a class="btn btn-small btn-success" href="{{ URL::to('employee/' . $emp->id) }}">Show</a>
 
-                        <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                        <a class="btn btn-small btn-info" href="{{ URL::to('employee/' . $emp->id . '/edit')}}">Edit</a>
+                    <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
+                    <a class="btn btn-small btn-info" href="{{ URL::to('employee/' . $emp->id . '/edit')}}">Edit</a>
 
-                        </td> --}}
+                    </td> --}}
                     </tr>
                     @endforeach
                 </tbody>
@@ -157,10 +158,14 @@
 @section('scripts')
 <script src="{{ asset('js/jquery.tabledit.js') }}"></script>
 <script src="{{ asset('js/jquery.tabledit.min.js') }}"></script>
+<script type="text/javascript"
+    src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="{{ asset('js/clients.js') }}"></script>
 @endsection
 
 @section('styles')
+<link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css"
+    rel="stylesheet" />
 <link rel="stylesheet" href="{{asset('css/clients.css')}}" />
 @endsection
