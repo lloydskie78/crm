@@ -11,10 +11,6 @@
 
 **/
 
-// $(function() {
-//   $("#example1").attr("height", 200);
-// });
-
 var isTabclicked = false;
 
 $(document).ready(function() {
@@ -259,7 +255,6 @@ $(function() {
 
 // For summernote textarea`
 $(document).ready(function() {
-    w;
     $(".update").summernote({
         height: 200
     });
@@ -278,28 +273,6 @@ $(".checkbox-toggle").click(function(e) {
         .prop("checked", this.checked);
 });
 
-// $(document).ready(function() {
-//     $(".checkbox-toggle").click(function() {
-//         var clicks = $(this).data("clicks");
-//         if (clicks) {
-//             //Uncheck all checkboxes
-//             $(".mailbox-messages input[type='checkbox']").prop(
-//                 "checked",
-//                 false
-//             );
-//             $(".checkbox-toggle .far.fa-check-square")
-//                 .removeClass("fa-check-square")
-//                 .addClass("fa-square");
-//         } else {
-//             //Check all checkboxes
-//             $(".mailbox-messages input[type='checkbox']").prop("checked", true);
-//             $(".checkbox-toggle .far.fa-square")
-//                 .removeClass("fa-square")
-//                 .addClass("fa-check-square");
-//         }
-//         $(this).data("clicks", !clicks);
-//     });
-// });
 //  Clear Modal
 $("#contactModal").on("hidden.bs.modal", function() {
     $(this)

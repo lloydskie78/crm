@@ -16,11 +16,6 @@
             <table class="table table-bordered table-hover" id="example1">
                 <thead>
                     <tr>
-                        {{-- <th>
-                            <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                                <i class="far fa-square"></i>
-                            </button>
-                        </th> --}}
                         <th></th>
                         <th></th>
                         <th>ID</th>
@@ -34,10 +29,6 @@
                 </thead>
                 <tbody>
                     @foreach($clients as $key => $emp)
-                    {{-- <tr>
-                        <td class="icheck-primary" style="width: 13px;">
-                            <label for="check1"></label>
-                        </td> --}}
                     <td></td>
                     <td class="details-control" style="width: 13px;">
                         <i class="fa fa-plus-square" aria-hidden=clear"true"></i>
