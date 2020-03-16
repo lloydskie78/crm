@@ -36,9 +36,6 @@ class ClientController extends Controller
             // Valid File Extensions
             $valid_extension = array("csv");
 
-            // 2MB in Bytes
-            $maxFileSize = 2097152;
-
             // Check file extension
             if (in_array(strtolower($extension), $valid_extension)) {
 
@@ -61,10 +58,10 @@ class ClientController extends Controller
                     $num = count($filedata);
 
                     // Skip first row (Remove below comment if you want to skip the first row)
-                    /*if($i == 0){
-                            $i++;
-                            continue; 
-                         }*/
+                    if ($i == 0) {
+                        $i++;
+                        continue;
+                    }
                     for ($c = 0; $c < $num; $c++) {
                         $importData_arr[$i][] = $filedata[$c];
                     }
@@ -76,14 +73,14 @@ class ClientController extends Controller
                 foreach ($importData_arr as $importData) {
 
                     $insertData = array(
-                        "agency_name" => $importData[1],
-                        "name" => $importData[2],
-                        "number" => $importData[3],
-                        "email" => $importData[4],
-                        "msg_in" => $importData[5],
-                        "update" => $importData[6]
+                        "agency_name" => $importData[0],
+                        "name" => $importData[1],
+                        "number" => $importData[2],
+                        "email" => $importData[3],
+                        "msg_in" => $importData[4],
+                        "update" => $importData[5]
                     );
-                    CLientModel::insertData($insertData);
+                    ClientModel::create($insertData);
                 }
                 Session::flash('message', 'Import Successful.');
             } else {

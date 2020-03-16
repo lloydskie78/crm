@@ -24,6 +24,12 @@ $(document).ready(function() {
     var table = $("#example1").DataTable({
         responsive: true,
         select: "single",
+        columnDefs: [
+            {
+                targets: [0, 1],
+                orderable: false
+            }
+        ],
         order: [[2, "asc"]]
     });
 
