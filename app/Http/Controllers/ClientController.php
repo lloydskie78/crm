@@ -23,7 +23,9 @@ class ClientController extends Controller
     public function insertData(Request $request)
     {
 
+
         if ($request->input('tabber') == "true") {
+
             if ($request->input('submit') != null) {
 
                 $file = $request->file('customFile');
@@ -89,29 +91,25 @@ class ClientController extends Controller
                 }
             }
         } else {
-
             $client = new ClientModel;
 
-            $client->agency_name = $request->input('agency-name');
-            $client->name = $request->input('first-name');
-            $client->number = $request->input('number');
-            $client->email = $request->input('email');
-            $client->msg_in = $request->input('msg_in');
-            $client->update = $request->input('update');
+            $validator = request()->validate([
+                'agency-name' => 'required',
+                'first-name' => 'required',
+                'email' => 'required|unique:users,email|email',
+                'number' => 'required',
+                'msg_in' => 'required',
+                'update' => 'required'
+            ]);
 
-            $client->save();
-
-            // $rules = array(
-            //     'agency_name' => 'required',
-            //     'name' => 'required',
-            //     'number' => 'required',
-            // );
+            $client::create($validator);
         }
 
 
         // Redirect to index
         return redirect()->action('ClientController@index');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -153,7 +151,16 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        ClientModel::find($id)->update([
+            'agency_name' => request()->get('agency-name'),
+            'name' => request()->get('first-name'),
+            'number' => request()->get('number'),
+            'email' => request()->get('email'),
+            'msg_in' => request()->get('msg_in'),
+            'update' => request()->get('update')
+        ]);
+        Session::flash('flash_message', 'Fee Updated Successfully.');
+        return redirect()->action('ClientController@index');
     }
 
     /**

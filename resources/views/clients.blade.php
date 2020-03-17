@@ -61,7 +61,7 @@
 
 <!-- Modal -->
 <form id="upload_csv" method="POST" action="{{ url("/insertData") }}" enctype="multipart/form-data">
-    {{ csrf_field() }}
+    @csrf
     <input type="hidden" value="false" id="tabber" name="tabber">
     <div class="modal fade bd-example-modal-xl" id="contactModal" tabindex="-1" role="dialog"
         aria-labelledby="contactModalLabel" aria-hidden="true">
@@ -91,28 +91,29 @@
                             <div class="form-row">
                                 <div class="form-group col-md">
                                     <label for="inputAgencyName">Agency Name</label>
-                                    <input type="text" class="form-control" id="agency-name" name="agency-name">
+                                    <input type="text" class="form-control" id="agency-name" name="agency-name"
+                                        required>
                                 </div>
                                 <div class="form-group col-md">
                                     <label for="inputFirstName">First Name</label>
-                                    <input type="text" class="form-control" id="first-name" name="first-name">
+                                    <input type="text" class="form-control" id="first-name" name="first-name" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md">
                                     <label for="inputEmail">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email">
+                                    <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
                                 <div class="form-group col-md">
                                     <label for="inputNumber">Number</label>
-                                    <input type="text" class="form-control" id="number" name="number">
+                                    <input type="text" class="form-control" id="number" name="number" required>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md">
                                     <label for="inputMsgIn">Msg In</label>
                                     {{-- <textarea class="form-control col-xs-12" name="msg" id="msg-in" rows="5"></textarea> --}}
-                                    <textarea class="msg_in" id="msg_in" name="msg_in"></textarea>
+                                    <textarea class="msg_in" id="msg_in" name="msg_in" required></textarea>
                                 </div>
                             </div>
                             <div class="form-row">
@@ -120,14 +121,13 @@
                                     <label for="inputUpdate">Update</label>
                                     {{-- <textarea class="form-control col-xs-12" name="update" id="update" rows="7"></textarea> --}}
                                     {{-- <div class="summernote" id="sumnote2"></div> --}}
-                                    <textarea class="update" id="update" name="update"></textarea>
+                                    <textarea class="update" id="update" name="update" required></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab">
                             <div class="custom-file">
-
                                 <input type="file" class="custom-file-input" id="customFile" name="customFile">
                                 <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
@@ -144,10 +144,10 @@
         </div>
     </div>
 </form>
+
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/jquery.tabledit.js') }}"></script>
 <script src="{{ asset('js/jquery.tabledit.min.js') }}"></script>
 <script type="text/javascript"
     src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>

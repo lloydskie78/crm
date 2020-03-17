@@ -15,7 +15,6 @@ var isTabclicked = false;
 
 $(document).ready(function() {
     var table = $("#example1").DataTable({
-        responsive: true,
         columnDefs: [
             {
                 targets: [0, 0],
@@ -29,6 +28,27 @@ $(document).ready(function() {
             style: "multi"
         },
         order: [[2, "asc"]]
+    });
+
+    $("#example1").Tabledit({
+        url: "/updateData",
+        columns: {
+            identifier: [2, "id"],
+            editable: [
+                [3, "agency-name"],
+                [4, "name"],
+                [5, "number"],
+                [6, "email"],
+                [7, "msg_in"],
+                [8, "update"]
+            ]
+        },
+        restoreButton: false,
+        onSuccess: function(data, textStatus, jqXHR) {
+            if (data.action == "delete") {
+                $("#" + data.id).remove();
+            }
+        }
     });
 
     // Add event listener for opening and closing details
@@ -55,28 +75,6 @@ $(document).ready(function() {
     table.on("user-select", function(e, dt, type, cell, originalEvent) {
         if ($(cell.node()).hasClass("details-control")) {
             e.preventDefault();
-        }
-    });
-});
-
-$(document).ready(function() {
-    $("#example1").Tabledit({
-        columns: {
-            identifier: [2, "id"],
-            editable: [
-                [3, "agency-name"],
-                [4, "name"],
-                [5, "number"],
-                [6, "email"],
-                [7, "msg_in"],
-                [8, "update"]
-            ]
-        },
-        restoreButton: false,
-        onSuccess: function(data) {
-            if (data.action == "delete") {
-                $("#" + data.id).remove();
-            }
         }
     });
 });
