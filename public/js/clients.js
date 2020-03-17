@@ -79,6 +79,18 @@ $(document).ready(function() {
     });
 });
 
+// For inline editing
+
+$(document).on("click", ".edit", function() {
+    var id = $(this).attr("id");
+    $.ajax({
+        url: "/updateData/" + id,
+        dataType: "json"
+    });
+
+    alert(id);
+});
+
 function format(d) {
     // `d` is the original data object for the row
     return (
@@ -289,18 +301,6 @@ $("#tab2").on("click", function() {
     isTabclicked = true;
     // alert("tab no 2 is clicked....");
     $("#tabber").val(isTabclicked);
-});
-
-// Exec when Save button clicked
-$("#saveButton").on("click", function() {
-    if (isTabclicked == true) {
-        function opsi(data) {
-            var allRows = data.split(/\r?\n|\r/);
-            var table = "<";
-        }
-    } else {
-        // alert("tab no 1 is clicked....");
-    }
 });
 
 function submit() {

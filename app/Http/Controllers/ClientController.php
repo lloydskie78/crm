@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Session;
 use Illuminate\Http\Request;
 use App\CLientModel;
+use DB;
 
 class ClientController extends Controller
 {
@@ -151,16 +152,14 @@ class ClientController extends Controller
      */
     public function edit($id)
     {
-        ClientModel::find($id)->update([
-            'agency_name' => request()->get('agency-name'),
-            'name' => request()->get('first-name'),
-            'number' => request()->get('number'),
-            'email' => request()->get('email'),
-            'msg_in' => request()->get('msg_in'),
-            'update' => request()->get('update')
-        ]);
-        Session::flash('flash_message', 'Fee Updated Successfully.');
-        return redirect()->action('ClientController@index');
+        if (request()->ajax()) {
+            $data = array(
+                $request->column_name => $request->column_value
+            );
+            DB::table('client_models')
+                ->where('id', $request->id)
+                ->update($data);
+        }
     }
 
     /**
