@@ -291,6 +291,17 @@ $("#contactModal").on("hidden.bs.modal", function() {
         .end();
 });
 
+$("#saveButton").on("click", function() {
+    if (isTabclicked == true) {
+        function opsi(data) {
+            var allRows = data.split(/\r?\n|\r/);
+            var table = "<";
+        }
+    } else {
+        // alert("tab no 1 is clicked....");
+    }
+});
+
 // For tab click
 $("#tab1").on("click", function() {
     isTabclicked = false;
