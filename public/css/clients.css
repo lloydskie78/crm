@@ -8,3 +8,6 @@ tr.shown td.details-control {
     color: red;
 }
 
+.card-header .btn {
+    margin-right: 10px;
+}

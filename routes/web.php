@@ -29,6 +29,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/clients', 'ClientController@index');
 
-Route::post('/insertData', 'ClientController@insertData');
+Route::post('/insertData', 'ClientController@create');
+Route::post('/fileImport', 'ClientController@fileImport');
 
 Route::patch('/updateData/{id}', 'ClientController@edit');

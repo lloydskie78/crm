@@ -21,12 +21,9 @@ class ClientController extends Controller
         return view('clients', compact('clients'));
     }
 
-    public function insertData(Request $request)
+    public function fileImport(Request $request)
     {
-
-
-        if ($request->input('tabber') == "true") {
-
+            
             if ($request->input('submit') != null) {
 
                 $file = $request->file('customFile');
@@ -91,21 +88,7 @@ class ClientController extends Controller
                     Session::flash('message', 'Invalid File Extension.');
                 }
             }
-        } else {
-            $client = new ClientModel;
-
-            $validator = request()->validate([
-                'agency-name' => 'required',
-                'first-name' => 'required',
-                'email' => 'required|unique:users,email|email',
-                'number' => 'required',
-                'msg_in' => 'required',
-                'update' => 'required'
-            ]);
-
-            $client::create($validator);
-        }
-
+       
 
         // Redirect to index
         return redirect()->action('ClientController@index');
@@ -117,9 +100,20 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $client = new ClientModel;
+
+            $client->agency_name = $request->input('agency-name');
+            $client->name = $request->input('first-name');
+            $client->number = $request->input('number');
+            $client->email = $request->input('email');
+            $client->msg_in = $request->input('msg_in');
+            $client->update = $request->input('update');
+
+            $client->save();
+
+            return redirect()->action('ClientController@index');
     }
 
     /**
@@ -150,16 +144,21 @@ class ClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        if (request()->ajax()) {
-            $data = array(
-                $request->column_name => $request->column_value
-            );
-            DB::table('client_models')
-                ->where('id', $request->id)
-                ->update($data);
-        }
+
+        $db = ClientModel::find($id);
+
+        
+        $db->update([
+            'agency_name' => $request->input('agency_name'),
+            'name' => $request->input('namee'),
+            'number' => $request->input('number'),
+            'email' => $request->input('email'),
+            'msg_in' => $request->input('msg_in'),
+            'update' => $request->input('update'),
+        ]);
+
     }
 
     /**

@@ -12,12 +12,14 @@
 **/
 
 var isTabclicked = false;
+var id = 0;
 
 $(document).ready(function() {
     var table = $("#example1").DataTable({
         columnDefs: [
             {
                 targets: [0, 0],
+                className: "mdl-data-table__cell--non-numeric",
                 checkboxes: {
                     selectRow: true
                 },
@@ -31,7 +33,6 @@ $(document).ready(function() {
     });
 
     $("#example1").Tabledit({
-        url: "/updateData",
         columns: {
             identifier: [2, "id"],
             editable: [
@@ -81,15 +82,52 @@ $(document).ready(function() {
 
 // For inline editing
 
-$(document).on("click", ".edit", function() {
-    var id = $(this).attr("id");
-    $.ajax({
-        url: "/updateData/" + id,
-        dataType: "json"
-    });
+$(document).on("click", ".save", function() {
+    var currentRow = $(this).closest("tr");
 
-    alert(id);
+    var col3 = currentRow.find("td:eq(2)").text();
+    var col4 = currentRow.find("td:eq(3)").text();
+    var col5 = currentRow.find("td:eq(4)").text();
+
+    var col6 = currentRow.find("td:eq(5)").text();
+    var col7 = currentRow.find("td:eq(6)").text();
+    var col8 = currentRow.find("td:eq(7)").text();
+    var col9 = currentRow.find("td:eq(8)").text();
+
+    alert("ID: " + col3);
+    alert("agency: " + col4);
+    alert("name: " + col5);
+    alert("number: " + col6);
+    alert("email: " + col7);
+    alert("msg_in: " + col8);
+    alert("update: " + col9);
+
+    $.ajax({
+        url: "/updateData" + col3,
+        type: "POST",
+        data: {
+            _token: $("#csrf").val(),
+            agency_name: col4,
+            name: col5,
+            number: col6,
+            email: col7,
+            msg_in: col8,
+            update: col9
+        },
+        cache: false,
+        success: function(dataResult) {
+            console.log(dataResult);
+            var dataResult = JSON.parse(dataResult);
+            if (dataResult.statusCode == 200) {
+                window.location = "/userData";
+            } else if (dataResult.statusCode == 201) {
+                alert("Error occured !");
+            }
+        }
+    });
 });
+
+$(document).on("click", ".confirm", function() {});
 
 function format(d) {
     // `d` is the original data object for the row
@@ -291,16 +329,16 @@ $("#contactModal").on("hidden.bs.modal", function() {
         .end();
 });
 
-$("#saveButton").on("click", function() {
-    if (isTabclicked == true) {
-        function opsi(data) {
-            var allRows = data.split(/\r?\n|\r/);
-            var table = "<";
-        }
-    } else {
-        // alert("tab no 1 is clicked....");
-    }
-});
+// $("#saveButton").on("click", function() {
+//     if (isTabclicked == true) {
+//         function opsi(data) {
+//             var allRows = data.split(/\r?\n|\r/);
+//             var table = "<";
+//         }
+//     } else {
+//         // alert("tab no 1 is clicked....");
+//     }
+// });
 
 // For tab click
 $("#tab1").on("click", function() {
@@ -316,4 +354,5 @@ $("#tab2").on("click", function() {
 
 function submit() {
     $("#upload_csv").submit();
+    w;
 }
