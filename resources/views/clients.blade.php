@@ -25,7 +25,7 @@
         </div>
         <!-- /.card-body -->
         <div class="card-body mailbox-messages">
-            <table class="table table-bordered table-hover" id="example1">
+            <table id="example1" class="ui celled table" style="width:100%">
                 <thead>
                     <tr>
                         <th></th>
@@ -173,18 +173,17 @@
 @endsection
 
 @section('scripts')
-<script src="{{ asset('js/jquery.tabledit.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.tabledit.min.js') }}"></script>
 <script type="text/javascript"
     src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
-<script src=https://cdn.datatables.net/1.10.20/js/dataTables.material.min.js"> </script> <script
-    src="{{ asset('js/clients.js') }}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.semanticui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script src="{{ asset('js/clients.js') }}"></script>
 @endsection
 
 @section('styles')
-<link type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.1.0/material.min.css"
-    rel="stylesheet" />
-<link type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.material.min.css" rel="stylesheet" />
-<link type="text/css" href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css"
-    rel="stylesheet" />
+<link href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.semanticui.min.css">
 <link rel="stylesheet" href="{{asset('css/clients.css')}}" />
 @endsection

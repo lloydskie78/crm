@@ -25,7 +25,6 @@ $(document).ready(function() {
         columnDefs: [
             {
                 targets: [0, 0],
-                className: "mdl-data-table__cell--non-numeric",
                 checkboxes: {
                     selectRow: true
                 },
@@ -53,7 +52,7 @@ $(document).ready(function() {
         restoreButton: false,
         onSuccess: function(data, textStatus, jqXHR) {
             if (data.action == "delete") {
-                $("#" + data.id).remove();
+                alert("Hello World");
             }
         }
     });
@@ -161,7 +160,7 @@ $(document).on("click", ".confirm", function() {
 function format(d) {
     // `d` is the original data object for the row
     return (
-        '<table class="table" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<table class="table table-bordered table-hover table-condensed" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         "<thead><tr>" +
         "<th></th>" +
         "<th>Stage</th>" +
