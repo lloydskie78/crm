@@ -159,9 +159,8 @@ class ClientController extends Controller
         ];
         
         $db->update($array);
-
-        return  $db;
-
+        
+        return redirect()->action('ClientController@index');
     }
 
     /**

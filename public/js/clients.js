@@ -15,12 +15,11 @@ var isTabclicked = false;
 var id = 0;
 
 $(document).ready(function() {
-
-    $("body").bind("ajaxSend", function(elm, xhr, s){
+    $("body").bind("ajaxSend", function(elm, xhr, s) {
         if (s.type == "PATCH") {
-           xhr.setRequestHeader('X-CSRF-Token', getCSRFTokenValue());
+            xhr.setRequestHeader("X-CSRF-Token", getCSRFTokenValue());
         }
-     });
+    });
 
     var table = $("#example1").DataTable({
         columnDefs: [
@@ -95,18 +94,17 @@ $(document).on("click", ".save", function() {
     var col3 = currentRow.find("td:eq(2)").text();
     var col4 = currentRow.find("td:eq(3)").text();
     var col5 = currentRow.find("td:eq(4)").text();
-
     var col6 = currentRow.find("td:eq(5)").text();
     var col7 = currentRow.find("td:eq(6)").text();
     var col8 = currentRow.find("td:eq(7)").text();
     var col9 = currentRow.find("td:eq(8)").text();
 
-    var ajax_token = $('#ajax-token').html().split("=")[3].replace("\"", '').replace("\"", '').replace(">", '');
-
-    console.log(ajax_token);
-    
-
-    alert("csrf: " + ajax_token );
+    var ajax_token = $("#ajax-token")
+        .html()
+        .split("=")[3]
+        .replace('"', "")
+        .replace('"', "")
+        .replace(">", "");
 
     $.ajax({
         url: "/updateData/" + col3,
