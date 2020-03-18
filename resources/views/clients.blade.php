@@ -18,6 +18,10 @@
                 data-toggle="modal" data-target="#">
                 <i class="fas fa-paper-plane"> Send</i>
             </button>
+            <button type="button" class="btn btn-primary green-btn" style="float:left;" id="add-banner"
+                data-toggle="modal" data-target="#">
+                <i class="fas fa-envelope-open"> Bulk SMS</i>
+            </button>
         </div>
         <!-- /.card-body -->
         <div class="card-body mailbox-messages">
@@ -68,14 +72,14 @@
 
 <div id="ajax-token">
     @csrf
-</div> 
+</div>
 
 <!-- Modal for Forms -->
 <form id="upload_csv" method="POST" action="{{ url("/insertData") }}" enctype="multipart/form-data">
     @csrf
     <div class="modal fade bd-example-modal-xl" id="contactModal" tabindex="-1" role="dialog"
         aria-labelledby="contactModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="contactModalLabel">Add Contact</h5>
@@ -92,7 +96,7 @@
                                 <input type="text" class="form-control" id="agency-name" name="agency-name" required>
                             </div>
                             <div class="form-group col-md">
-                                <label for="inputFirstName">First Name</label>
+                                <label for="inputFirstName">Name</label>
                                 <input type="text" class="form-control" id="first-name" name="first-name" required>
                             </div>
                         </div>

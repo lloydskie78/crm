@@ -21,6 +21,7 @@ class CreateClientModelsTable extends Migration
             $table->string('email');
             $table->string('msg_in');
             $table->string('update');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

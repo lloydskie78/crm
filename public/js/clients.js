@@ -86,7 +86,7 @@ $(document).ready(function() {
     });
 });
 
-// For inline editing
+// FOR INLINE EDITING
 
 $(document).on("click", ".save", function() {
     var currentRow = $(this).closest("tr");
@@ -119,20 +119,44 @@ $(document).on("click", ".save", function() {
             msg_in: col8,
             update: col9
         },
-        cache: false,
-        success: function(dataResult) {
-            console.log(dataResult);
-            var dataResult = JSON.parse(dataResult);
-            if (dataResult.statusCode == 200) {
-                window.location = "/userData";
-            } else if (dataResult.statusCode == 201) {
-                alert("Error occured !");
-            }
-        }
+        cache: false
     });
 });
 
-$(document).on("click", ".confirm", function() {});
+// FOR INLINE EDITING
+
+$(document).on("click", ".confirm", function() {
+    alert("Hello");
+    // var currentRow = $(this).closest("tr");
+
+    // var colId = currentRow.find("td:eq(2)").text();
+
+    // var ajax_token = $("#ajax-token")
+    //     .html()
+    //     .split("=")[3]
+    //     .replace('"', "")
+    //     .replace('"', "")
+    //     .replace(">", "");
+
+    // $.ajax({
+    //     url: "/deleteData/" + colId,
+    //     type: "POST",
+    //     data: {
+    //         CSRF: ajax_token,
+    //         _token: ajax_token
+    //     },
+    //     cache: false,
+    //     success: function(dataResult) {
+    //         console.log(dataResult);
+    //         var dataResult = JSON.parse(dataResult);
+    //         if (dataResult.statusCode == 200) {
+    //             window.location = "/userData";
+    //         } else if (dataResult.statusCode == 201) {
+    //             alert("Error occured !");
+    //         }
+    //     }
+    // });
+});
 
 function format(d) {
     // `d` is the original data object for the row

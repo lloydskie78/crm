@@ -183,6 +183,11 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $db = ClientModel::find($id);
+
+        $db->softDeletes();
+
+        return redirect()->action('ClientController@index');
+
     }
 }

@@ -33,3 +33,7 @@ Route::post('/insertData', 'ClientController@create');
 Route::post('/fileImport', 'ClientController@fileImport');
 
 Route::patch('/updateData/{id}', 'ClientController@edit');
+
+Route::post('/deleteData/{id}', 'ClientController@destroy');
+
+
