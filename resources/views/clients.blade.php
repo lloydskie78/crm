@@ -66,6 +66,10 @@
     </div>
 </div>
 
+<div id="ajax-token">
+    @csrf
+</div> 
+
 <!-- Modal for Forms -->
 <form id="upload_csv" method="POST" action="{{ url("/insertData") }}" enctype="multipart/form-data">
     @csrf

@@ -146,18 +146,21 @@ class ClientController extends Controller
      */
     public function edit(Request $request, $id)
     {
-
-        $db = ClientModel::find($id);
-
         
-        $db->update([
+        $db = ClientModel::find($id);
+        
+        $array = [
             'agency_name' => $request->input('agency_name'),
-            'name' => $request->input('namee'),
+            'name' => $request->input('name'),
             'number' => $request->input('number'),
             'email' => $request->input('email'),
             'msg_in' => $request->input('msg_in'),
             'update' => $request->input('update'),
-        ]);
+        ];
+        
+        $db->update($array);
+
+        return  $db;
 
     }
 

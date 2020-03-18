@@ -15,6 +15,13 @@ var isTabclicked = false;
 var id = 0;
 
 $(document).ready(function() {
+
+    $("body").bind("ajaxSend", function(elm, xhr, s){
+        if (s.type == "PATCH") {
+           xhr.setRequestHeader('X-CSRF-Token', getCSRFTokenValue());
+        }
+     });
+
     var table = $("#example1").DataTable({
         columnDefs: [
             {
@@ -94,19 +101,19 @@ $(document).on("click", ".save", function() {
     var col8 = currentRow.find("td:eq(7)").text();
     var col9 = currentRow.find("td:eq(8)").text();
 
-    alert("ID: " + col3);
-    alert("agency: " + col4);
-    alert("name: " + col5);
-    alert("number: " + col6);
-    alert("email: " + col7);
-    alert("msg_in: " + col8);
-    alert("update: " + col9);
+    var ajax_token = $('#ajax-token').html().split("=")[3].replace("\"", '').replace("\"", '').replace(">", '');
+
+    console.log(ajax_token);
+    
+
+    alert("csrf: " + ajax_token );
 
     $.ajax({
-        url: "/updateData" + col3,
-        type: "POST",
+        url: "/updateData/" + col3,
+        type: "PATCH",
         data: {
-            _token: $("#csrf").val(),
+            CSRF: ajax_token,
+            _token: ajax_token,
             agency_name: col4,
             name: col5,
             number: col6,
