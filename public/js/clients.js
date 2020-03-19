@@ -15,7 +15,6 @@ var isTabclicked = false;
 var id = 0;
 
 $(document).ready(function() {
-    
     $("body").bind("ajaxSend", function(elm, xhr, s) {
         if (s.type == "PATCH") {
             xhr.setRequestHeader("X-CSRF-Token", getCSRFTokenValue());
@@ -133,7 +132,6 @@ $(document).on("click", ".save", function() {
 // FOR INLINE EDITING
 
 $(document).on("click", ".confirm", function() {
-    toastr.warning("Contact deleted");
     var currentRow = $(this).closest("tr");
 
     var colId = currentRow.find("td:eq(2)").text();
@@ -154,6 +152,7 @@ $(document).on("click", ".confirm", function() {
         },
         cache: false,
         success: function() {
+            toastr.warning("Contact deleted");
             currentRow.hide();
         }
     });
@@ -384,5 +383,4 @@ $("#tab2").on("click", function() {
 
 function submit() {
     $("#upload_csv").submit();
-    w;
 }

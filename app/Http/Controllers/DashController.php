@@ -13,4 +13,3 @@ class DashController extends Controller
     }
 
 }
-`

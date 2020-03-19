@@ -16,9 +16,9 @@ class CreateClientModelsTable extends Migration
         Schema::create('client_models', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('agency_name');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('number');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('msg_in');
             $table->string('update');
             $table->softDeletes();

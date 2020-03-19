@@ -82,9 +82,14 @@ class ClientController extends Controller
             }
             return redirect()->action('ClientController@index');
                 
-            } catch (\Exception $err) {
+            } catch (Illuminate\Database\QueryException $e) {
+                $errorCode = $e->errorInfo[1];
+                if($errorCode == 1062){
 
-                DB::rollBack();
+                    $error = "Duplicate entry! Check file first.";
+                    return view('clients', ['error' => $error]);
+
+                }
                 
             }
         
@@ -98,23 +103,16 @@ class ClientController extends Controller
      */
     public function create(Request $request)
     {
-        try {
-            $client = new ClientModel;
-
-            $client->agency_name = $request->input('agency-name');
-            $client->name = $request->input('first-name');
-            $client->number = $request->input('number');
-            $client->email = $request->input('email');
-            $client->msg_in = $request->input('msg_in');
-            $client->update = $request->input('update');
-
-            $client->save();
-
-            return redirect()->action('ClientController@index');
-        } catch (\Exception $err) {
-            DB::rollBack();
-        }
-        
+        $client = new ClientModel;
+        $client->agency_name = $request->input('agency-name');
+        $client->name = $request->input('first-name');
+        $client->number = $request->input('number');
+        $client->email = $request->input('email');
+        $client->msg_in = $request->input('msg_in');
+        $client->update = $request->input('update');
+        $client->save();
+        return redirect()->action('ClientController@index');
+       
     }
 
     /**
