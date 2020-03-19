@@ -38,6 +38,8 @@ $(document).ready(function() {
     });
 
     $("#example1").Tabledit({
+        deleteButton: true,
+        autoFocus: false,
         columns: {
             identifier: [2, "id"],
             editable: [
@@ -126,35 +128,35 @@ $(document).on("click", ".save", function() {
 
 $(document).on("click", ".confirm", function() {
     alert("Hello");
-    // var currentRow = $(this).closest("tr");
+    var currentRow = $(this).closest("tr");
 
-    // var colId = currentRow.find("td:eq(2)").text();
+    var colId = currentRow.find("td:eq(2)").text();
 
-    // var ajax_token = $("#ajax-token")
-    //     .html()
-    //     .split("=")[3]
-    //     .replace('"', "")
-    //     .replace('"', "")
-    //     .replace(">", "");
+    var ajax_token = $("#ajax-token")
+        .html()
+        .split("=")[3]
+        .replace('"', "")
+        .replace('"', "")
+        .replace(">", "");
 
-    // $.ajax({
-    //     url: "/deleteData/" + colId,
-    //     type: "POST",
-    //     data: {
-    //         CSRF: ajax_token,
-    //         _token: ajax_token
-    //     },
-    //     cache: false,
-    //     success: function(dataResult) {
-    //         console.log(dataResult);
-    //         var dataResult = JSON.parse(dataResult);
-    //         if (dataResult.statusCode == 200) {
-    //             window.location = "/userData";
-    //         } else if (dataResult.statusCode == 201) {
-    //             alert("Error occured !");
-    //         }
-    //     }
-    // });
+    $.ajax({
+        url: "/deleteData/" + colId,
+        type: "POST",
+        data: {
+            CSRF: ajax_token,
+            _token: ajax_token
+        },
+        cache: false,
+        success: function(dataResult) {
+            console.log(dataResult);
+            var dataResult = JSON.parse(dataResult);
+            if (dataResult.statusCode == 200) {
+                window.location = "/userData";
+            } else if (dataResult.statusCode == 201) {
+                alert("Error occured !");
+            }
+        }
+    });
 });
 
 function format(d) {
