@@ -185,7 +185,7 @@ class ClientController extends Controller
     {
         $db = ClientModel::find($id);
 
-        $db->softDeletes();
+        $db->delete();
 
         return redirect()->action('ClientController@index');
 
