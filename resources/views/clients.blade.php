@@ -178,6 +178,7 @@
     src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/js/dataTables.checkboxes.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.semanticui.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+<script src="{{ asset('designs/plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('js/clients.js') }}"></script>
 @endsection
 
@@ -185,5 +186,6 @@
 <link href="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.11/css/dataTables.checkboxes.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.semanticui.min.css">
+<link rel="stylesheet" href="{{ asset('designs/plugins/toastr/toastr.min.css') }}">
 <link rel="stylesheet" href="{{asset('css/clients.css')}}" />
 @endsection

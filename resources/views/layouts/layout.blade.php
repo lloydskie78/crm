@@ -7,6 +7,8 @@
     <title>CRM</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('designs/plugins/fontawesome-free/css/all.min.css')}}" />
     <!-- Ionicons -->
@@ -143,10 +145,17 @@
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
-                        <i class="fas fa-th-large"></i>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-user-circle"></i>
                     </a>
+                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">Account Settings</span>
+                        <a href="#" class="dropdown-item">
+                            asdasd
+                        </a>
+                        <button class="btn btn-success">Logout</button>
+                    </div>
                 </li>
             </ul>
         </nav>
@@ -155,7 +164,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index.html" class="brand-link">
+            <a href="/dashboard" class="brand-link">
                 <img src="{{asset('designs/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8" />
                 <span class="brand-text font-weight-light">CRM Admin</span>
@@ -180,13 +189,13 @@
                         data-accordion="false">
                         <li class="nav-header">MENU</li>
                         <li class="nav-item">
-                            <a href="/" class="nav-link">
+                            <a href="/dashboard" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="clients" class="nav-link">
+                            <a href="admin/clients" class="nav-link">
                                 <i class="nav-icon fas fa-address-book"></i>
                                 <p>Contacts </p>
                             </a>

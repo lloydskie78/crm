@@ -15,6 +15,7 @@ var isTabclicked = false;
 var id = 0;
 
 $(document).ready(function() {
+    
     $("body").bind("ajaxSend", function(elm, xhr, s) {
         if (s.type == "PATCH") {
             xhr.setRequestHeader("X-CSRF-Token", getCSRFTokenValue());
@@ -22,6 +23,7 @@ $(document).ready(function() {
     });
 
     var table = $("#example1").DataTable({
+        lengthMenu: [10, 25, 50, 75, 100, 500, 1000, 10000],
         columnDefs: [
             {
                 targets: [0, 0],
@@ -90,6 +92,7 @@ $(document).ready(function() {
 // FOR INLINE EDITING
 
 $(document).on("click", ".save", function() {
+    toastr.success("Contact updated successfully");
     var currentRow = $(this).closest("tr");
 
     var col3 = currentRow.find("td:eq(2)").text();
@@ -120,13 +123,17 @@ $(document).on("click", ".save", function() {
             msg_in: col8,
             update: col9
         },
-        cache: false
+        cache: false,
+        success: function() {
+            toastr.success("Contact updated successfully");
+        }
     });
 });
 
 // FOR INLINE EDITING
 
 $(document).on("click", ".confirm", function() {
+    toastr.warning("Contact deleted");
     var currentRow = $(this).closest("tr");
 
     var colId = currentRow.find("td:eq(2)").text();

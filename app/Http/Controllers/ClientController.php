@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Session;
-use App\CLientModel;
+use App\ClientModel;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -22,22 +22,22 @@ class ClientController extends Controller
         return view('clients', compact('clients'));
     }
 
+    public function contactCount()
+    {
+        $conCount = ClientModel::count();
+        return view('dashboard', compact('conCount'));
+    }
+
     public function fileImport(Request $request)
     {
-            
+        try {
             if ($request->input('submit') != null) {
-
                 $file = $request->file('customFile');
-
                 $filename = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension();
-                // $tempPath = $file->getRealPath();
-                // $fileSize = $file->getSize();
-                // $mimeType = $file->getMimeType();
-
+                
                 // Valid File Extensions
                 $valid_extension = array("csv");
-
                 // Check file extension
                 if (in_array(strtolower($extension), $valid_extension)) {
 
@@ -49,31 +49,22 @@ class ClientController extends Controller
 
                     // Import CSV to Database
                     $filepath = public_path($location . "/" . $filename);
-
+                    
                     // Reading file
                     $file = fopen($filepath, "r");
-
                     $importData_arr = array();
                     $i = 0;
-
                     while (($filedata = fgetcsv($file, 1000, ",")) !== FALSE) {
                         $num = count($filedata);
 
-                        // Skip first row (Remove below comment if you want to skip the first row)
-                        // if ($i == 0) {
-                        //     $i++;
-                        //     continue;
-                        // }
                         for ($c = 0; $c < $num; $c++) {
                             $importData_arr[$i][] = $filedata[$c];
                         }
                         $i++;
                     }
                     fclose($file);
-
                     // Insert to MySQL database
                     foreach ($importData_arr as $importData) {
-
                         $insertData = array(
                             "agency_name" => $importData[0],
                             "name" => $importData[1],
@@ -89,10 +80,14 @@ class ClientController extends Controller
                     Session::flash('message', 'Invalid File Extension.');
                 }
             }
-       
+            return redirect()->action('ClientController@index');
+                
+            } catch (\Exception $err) {
 
-        // Redirect to index
-        return redirect()->action('ClientController@index');
+                DB::rollBack();
+                
+            }
+        
     }
 
 
@@ -103,7 +98,8 @@ class ClientController extends Controller
      */
     public function create(Request $request)
     {
-        $client = new ClientModel;
+        try {
+            $client = new ClientModel;
 
             $client->agency_name = $request->input('agency-name');
             $client->name = $request->input('first-name');
@@ -115,6 +111,10 @@ class ClientController extends Controller
             $client->save();
 
             return redirect()->action('ClientController@index');
+        } catch (\Exception $err) {
+            DB::rollBack();
+        }
+        
     }
 
     /**
@@ -147,21 +147,27 @@ class ClientController extends Controller
      */
     public function edit(Request $request, $id)
     {
+        try {
+
+            $db = ClientModel::find($id);
         
-        $db = ClientModel::find($id);
+            $array = [
+                'agency_name' => $request->input('agency_name'),
+                'name' => $request->input('name'),
+                'number' => $request->input('number'),
+                'email' => $request->input('email'),
+                'msg_in' => $request->input('msg_in'),
+                'update' => $request->input('update'),
+            ];
+
+            $db->update($array);
         
-        $array = [
-            'agency_name' => $request->input('agency_name'),
-            'name' => $request->input('name'),
-            'number' => $request->input('number'),
-            'email' => $request->input('email'),
-            'msg_in' => $request->input('msg_in'),
-            'update' => $request->input('update'),
-        ];
+            return redirect()->action('ClientController@index');
+
+        } catch (\Exception $err) {
+            DB::rollBack();
+        }
         
-        $db->update($array);
-        
-        return redirect()->action('ClientController@index');
     }
 
     /**
@@ -184,12 +190,12 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        $db = ClientModel::find($id);
+        try {
+            $db = ClientModel::find($id);
 
-        $db->delete();
-        
-
-        // return redirect()->action('ClientController@index');
-
+            $db->delete();
+        } catch (\Exception $err) {
+            DB::rollBack();
+        }
     }
 }
