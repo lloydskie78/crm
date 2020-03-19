@@ -147,14 +147,8 @@ $(document).on("click", ".confirm", function() {
             _token: ajax_token
         },
         cache: false,
-        success: function(dataResult) {
-            console.log(dataResult);
-            var dataResult = JSON.parse(dataResult);
-            if (dataResult.statusCode == 200) {
-                window.location = "/userData";
-            } else if (dataResult.statusCode == 201) {
-                alert("Error occured !");
-            }
+        success: function() {
+            currentRow.hide();
         }
     });
 });

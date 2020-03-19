@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Session;
-use Illuminate\Http\Request;
-use App\CLientModel;
 use DB;
+use Session;
+use App\CLientModel;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class ClientController extends Controller
 {
@@ -186,8 +187,9 @@ class ClientController extends Controller
         $db = ClientModel::find($id);
 
         $db->delete();
+        
 
-        return redirect()->action('ClientController@index');
+        // return redirect()->action('ClientController@index');
 
     }
 }
