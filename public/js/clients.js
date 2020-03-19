@@ -127,7 +127,6 @@ $(document).on("click", ".save", function() {
 // FOR INLINE EDITING
 
 $(document).on("click", ".confirm", function() {
-    alert("Hello");
     var currentRow = $(this).closest("tr");
 
     var colId = currentRow.find("td:eq(2)").text();
