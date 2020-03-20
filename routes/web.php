@@ -20,14 +20,14 @@ Route::get('/admin', function () {
 });
 
 
-Route::get('/admin/inbox', 'MailController@inbox')->name('inbox');
-Route::get('/admin/compose', 'MailController@compose')->name('compose');
+Route::get('inbox', 'MailController@inbox')->name('inbox');
+Route::get('compose', 'MailController@compose')->name('compose');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/clients', 'ClientController@index');
+Route::get('/clients', 'ClientController@index');
 
 Route::post('/insertData', 'ClientController@create');
 Route::post('/fileImport', 'ClientController@fileImport');
@@ -35,5 +35,7 @@ Route::post('/fileImport', 'ClientController@fileImport');
 Route::patch('/updateData/{id}', 'ClientController@edit');
 
 Route::post('/deleteData/{id}', 'ClientController@destroy');
+
+Route::get('/sms', 'SmsController@index');
 
 
