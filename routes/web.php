@@ -36,6 +36,8 @@ Route::patch('/updateData/{id}', 'ClientController@edit');
 
 Route::post('/deleteData/{id}', 'ClientController@destroy');
 
-Route::get('/sms', 'SmsController@index');
+Route::get('/sms', 'SmsController@smsindex');
+
+Route::get('/msgtemplate', 'MsgTemplateController@templateindex');
 
 

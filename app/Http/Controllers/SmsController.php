@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 class SmsController extends Controller
 {
-    public function index()
+    public function smsindex()
     {
-        return view('sms');
+        return view('sms.sms');
     }
+
 }

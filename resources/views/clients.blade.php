@@ -42,7 +42,7 @@
         </div>
         <!-- /.card-body -->
         <div class="card-body mailbox-messages">
-            <table id="example1" class="ui celled table" style="width:100%">
+            <table id="example1" class="ui celled table">
                 <thead>
                     <tr>
                         <th></th>
