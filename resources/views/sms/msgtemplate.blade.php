@@ -37,7 +37,7 @@
                         <th>Sub Category</th>
                         <th>Title</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,7 +49,7 @@
                         <td>{{ $vals->title }}</td>
                         <td></td>
                         <!-- we will also add show, edit, and delete buttons -->
-                        <td>
+                        <td class="text-center">
                             <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
                             <a class="btn btn-small btn-success" href="#">Show</a>
 
@@ -120,7 +120,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="modalCloseButton" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="modalCloseButton" class="btn btn-secondary"
+                    data-dismiss="modal">Close</button>
                 <button onlick="submit()" type="submit" name="submit" id="saveButton" value="Save changes"
                     class="btn btn-primary">Save Template</button>
             </div>
