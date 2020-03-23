@@ -101,7 +101,7 @@ $(document).on("click", "#saveButton", function() {
                 toastr.success("Message template added!");
             }
         });
-        $("#msgtemplatemodal").modal("close");
+        $("#modalCloseButton").trigger('click');
     } else {
         toastr.error("Fill all fields!");
     }

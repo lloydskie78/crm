@@ -120,7 +120,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="modalCloseButton" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button onlick="submit()" type="submit" name="submit" id="saveButton" value="Save changes"
                     class="btn btn-primary">Save Template</button>
             </div>
