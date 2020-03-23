@@ -68,7 +68,7 @@
     @csrf
 </div>
 
-<form id="templateadd" method="POST" action="{{ url("/addTemplate") }}" enctype="multipart/form-data">
+
     @csrf
     <div class="modal fade bd-example-modal-xl" id="contactModal" tabindex="-1" role="dialog"
         aria-labelledby="contactModalLabel" aria-hidden="true">
@@ -128,7 +128,6 @@
             </div>
         </div>
     </div>
-</form>
 
 
 

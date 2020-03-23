@@ -20,11 +20,12 @@ class MsgTemplateController extends Controller
         
         $msgtemp->title = $request->input('title');
         $msgtemp->contents = $request->input('contents');
-        $msgtemp->main_cat = $request->input('maincatSelect');
-        $msgtemp->sub_cat = $request->input('subcatSelect');
+        $msgtemp->main_cat = $request->input('main_cat');
+        $msgtemp->sub_cat = $request->input('sub_cat');
         $msgtemp->status = "Inactive";
         $msgtemp->save();
-        
-        return redirect()->action('MsgTemplateController@templateindex');
+
+        return json_encode($msgtemp);
+
     }
 }
