@@ -23,7 +23,7 @@
         <!-- /.card-header -->
         <div class="card-header">
             <button type="button" class="btn btn-primary green-btn" style="float:right;" id="add-banner"
-                data-toggle="modal" data-target="#contactModal">
+                data-toggle="modal" data-target="#msgtemplatemodal">
                 <i class="fas fa-plus"> Add Template</i>
             </button>
         </div>
@@ -47,7 +47,7 @@
                         <td>{{ $vals->main_cat }}</td>
                         <td>{{ $vals->sub_cat }}</td>
                         <td>{{ $vals->title }}</td>
-                        <td>{{ $vals->status }}</td>
+                        <td></td>
                         <!-- we will also add show, edit, and delete buttons -->
                         <td>
                             <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
@@ -69,65 +69,64 @@
 </div>
 
 
-    @csrf
-    <div class="modal fade bd-example-modal-xl" id="contactModal" tabindex="-1" role="dialog"
-        aria-labelledby="contactModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="contactModalLabel">Create Template</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                        aria-labelledby="pills-home-tab">
-                        <div class="form-row">
-                            <div class="form-group col-md">
-                                <label for="inputTitle">Title</label>
-                                <input type="text" class="form-control" id="title" name="title" required>
-                            </div>
+@csrf
+<div class="modal fade bd-example-modal-xl" id="msgtemplatemodal" tabindex="-1" role="dialog"
+    aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="msgtemplateLabel">Create Template</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div class="form-row">
+                        <div class="form-group col-md">
+                            <label for="inputTitle">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md">
-                                <label for="inputMsgIn">Contents</label>
-                                {{-- <textarea class="form-control col-xs-12" name="msg" id="msg-in" rows="5"></textarea> --}}
-                                <textarea class="contents" id="contents" name="contents" required></textarea>
-                            </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md">
+                            <label for="inputMsgIn">Contents</label>
+                            {{-- <textarea class="form-control col-xs-12" name="msg" id="msg-in" rows="5"></textarea> --}}
+                            <textarea class="contents" id="contents" name="contents" required></textarea>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-md">
-                                {{-- <label for="inputEmail">Main Category</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md">
+                            {{-- <label for="inputEmail">Main Category</label>
                                 <input type="email" class="form-control" id="email" name="email" required> --}}
-                                <label for="exampleFormControlSelect1">Main Category</label>
-                                <select class="form-control" id="maincatSelect" name="maincatSelect">
-                                    <option value="item0">--- Select one ---</option>
-                                    <option value="item1">Client Email</option>
-                                    <option value="item2">Client Text</option>
-                                    <option value="item3">Cleaner Email</option>
-                                    <option value="item4">Cleaner Text</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md">
-                                {{-- <label for="inputNumber">Sub Category</label>
+                            <label for="exampleFormControlSelect1">Main Category</label>
+                            <select class="form-control" id="maincatSelect" name="maincatSelect">
+                                <option value="item0">--- Select one ---</option>
+                                <option value="item1">Client Email</option>
+                                <option value="item2">Client Text</option>
+                                <option value="item3">Cleaner Email</option>
+                                <option value="item4">Cleaner Text</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md">
+                            {{-- <label for="inputNumber">Sub Category</label>
                                 <input type="text" class="form-control" id="number" name="number" required> --}}
-                                <label for="exampleFormControlSelect1">Sub Category</label>
-                                <select class="form-control" id="subcatSelect" name="subcatSelect">
-                                    <option value="">--- select main category first ---</option>
-                                </select>
-                            </div>
+                            <label for="exampleFormControlSelect1">Sub Category</label>
+                            <select class="form-control" id="subcatSelect" name="subcatSelect">
+                                <option value="">--- select main category first ---</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button onlick="submit()" type="submit" name="submit" id="saveButton" value="Save changes"
-                        class="btn btn-primary">Save Template</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button onlick="submit()" type="submit" name="submit" id="saveButton" value="Save changes"
+                    class="btn btn-primary">Save Template</button>
             </div>
         </div>
     </div>
+</div>
 
 
 

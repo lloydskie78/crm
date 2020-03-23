@@ -81,24 +81,28 @@ $(document).on("click", "#saveButton", function() {
                 console.log(JSON.parse(response));
                 var newTemplate = JSON.parse(response);
 
-                var newLine = '';
+                var newLine = "";
 
                 newLine += "<tr role='row'>";
-                newLine += "<td id='id' class='sorting_1'>" + newTemplate.id + "</td>";
+                newLine +=
+                    "<td id='id' class='sorting_1'>" + newTemplate.id + "</td>";
                 newLine += "<td>" + newTemplate.main_cat + "</td>";
                 newLine += "<td>" + newTemplate.sub_cat + "</td>";
                 newLine += "<td>" + newTemplate.title + "</td>";
                 newLine += "<td>" + newTemplate.status + "</td>";
-                newLine += "<td> <a class='btn btn-small btn-success' href='#'>Show</a>";
-                newLine += "<a class='btn btn-small btn-info' href='#'>Edit</a> </td>";
+                newLine +=
+                    "<td> <a class='btn btn-small btn-success' href='#'>Show</a>";
+                newLine +=
+                    "<a class='btn btn-small btn-info' href='#'>Edit</a></td>";
                 newLine += "</tr>";
 
-                $('#temptable > tbody').append(newLine);
+                $("#temptable > tbody").append(newLine);
 
                 toastr.success("Message template added!");
             }
         });
+        $("#msgtemplatemodal").modal("close");
     } else {
-        toastr.error("Fill all fields");
+        toastr.error("Fill all fields!");
     }
 });
