@@ -10,6 +10,7 @@
 * ! http://jsfiddle.net/fe74zm38/
 
 **/
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
 
 var isTabclicked = false;
 var id = 0;
@@ -91,7 +92,6 @@ $(document).ready(function() {
 // FOR INLINE EDITING
 
 $(document).on("click", ".save", function() {
-    toastr.success("Contact updated successfully");
     var currentRow = $(this).closest("tr");
 
     var col3 = currentRow.find("td:eq(2)").text();
@@ -101,20 +101,12 @@ $(document).on("click", ".save", function() {
     var col7 = currentRow.find("td:eq(6)").text();
     var col8 = currentRow.find("td:eq(7)").text();
     var col9 = currentRow.find("td:eq(8)").text();
-
-    var ajax_token = $("#ajax-token")
-        .html()
-        .split("=")[3]
-        .replace('"', "")
-        .replace('"', "")
-        .replace(">", "");
-
+    
     $.ajax({
         url: "/updateData/" + col3,
         type: "PATCH",
         data: {
-            CSRF: ajax_token,
-            _token: ajax_token,
+            _token: CSRF_TOKEN,
             agency_name: col4,
             name: col5,
             number: col6,
@@ -136,19 +128,11 @@ $(document).on("click", ".confirm", function() {
 
     var colId = currentRow.find("td:eq(2)").text();
 
-    var ajax_token = $("#ajax-token")
-        .html()
-        .split("=")[3]
-        .replace('"', "")
-        .replace('"', "")
-        .replace(">", "");
-
     $.ajax({
         url: "/deleteData/" + colId,
         type: "POST",
         data: {
-            CSRF: ajax_token,
-            _token: ajax_token
+            _token: CSRF_TOKEN
         },
         cache: false,
         success: function() {

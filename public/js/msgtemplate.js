@@ -1,4 +1,5 @@
 //FOR JQUERY DATATABLE
+var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
 
 $(document).ready(function() {
     $("#temptable").DataTable({
@@ -6,7 +7,7 @@ $(document).ready(function() {
         select: {
             style: "multi"
         },
-        order: [[2, "asc"]]
+        order: [[0, "asc"]]
     });
 });
 
@@ -17,19 +18,19 @@ $(document).ready(function() {
         var val = $(this).val();
         if (val == "item1") {
             $("#subcatSelect").html(
-                "<option value='test'>item1: test 1</option><option value='test2'>item1: test 2</option>"
+                "<option value='test'>item1a</option><option value='test2'>item1b</option>"
             );
         } else if (val == "item2") {
             $("#subcatSelect").html(
-                "<option value='test'>item2: test 1</option><option value='test2'>item2: test 2</option>"
+                "<option value='test'>item2a</option><option value='test2'>item2b</option>"
             );
         } else if (val == "item3") {
             $("#subcatSelect").html(
-                "<option value='test'>item3: test 1</option><option value='test2'>item3: test 2</option>"
+                "<option value='test'>item3a</option><option value='test2'>item3b</option>"
             );
-        } else if (val == "item3") {
+        } else if (val == "item4") {
             $("#subcatSelect").html(
-                "<option value='test'>item3: test 1</option><option value='test2'>item4: test 2</option>"
+                "<option value='test'>item4a</option><option value='test2'>item4b</option>"
             );
         } else if (val == "item0") {
             $("#subcatSelect").html(
@@ -46,33 +47,39 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
-    var source = [
-        "Client Email",
-        "Client Text",
-        "Cleaner Email",
-        "Cleaner Text"
-    ];
-    $("#list1").jqxComboBox({
-        theme: "arctic",
-        selectedIndex: 3,
-        source: source,
-        width: 200,
-        height: 25
-    });
-    $("#list2").jqxComboBox({
-        theme: "arctic",
-        selectedIndex: 3,
-        source: source,
-        width: 200,
-        height: 25
-    });
-});
-
 //  Clear Modal
 $("#contactModal").on("hidden.bs.modal", function() {
     $(this)
         .find("input,textarea,file, select")
         .val("")
         .end();
+});
+
+$(document).on("click", "#saveButton", function() {
+    var title = $("#title").val();
+    var contents = $("#contents").val();
+    var maincat = $("#maincatSelect option:selected").text();
+    var subcat = $("#subcatSelect option:selected").text();
+
+    alert("Main: " + maincat + "\nSubcat: " + subcat);
+
+    if (title != "" && contents != "" && maincat != "" && subcat != "") {
+        $.ajax({
+            url: "/addTemplate",
+            type: "POST",
+            data: {
+                _token: CSRF_TOKEN,
+                title: title,
+                contents: contents,
+                main_cat: maincat,
+                sub_cat: subcat
+            },
+            cache: false,
+            success: function() {
+                toastr.success("Message template added!");
+            }
+        });
+    } else {
+        toastr.error("Fill all fields");
+    }
 });

@@ -42,27 +42,20 @@
                 </thead>
                 <tbody>
                     @foreach($msgtemp as $key => $vals)
-                    <td></td>
-                    <td class="details-control" style="width: 13px;">
-                        <i class="fa fa-plus-square" aria-hidden=clear"true"></i>
-                    </td>
-                    <td id="id">{{ $vals->id }}</td>
-                    <td>{{ $vals->agency_name }}</td>
-                    <td>{{ $vals->name }}</td>
-                    <td>{{ $vals->number }}</td>
-                    <td>{{ $vals->email }}</td>
-                    <td>{{ $vals->msg_in }}</td>
-                    <td>{{ $vals->update }}</td>
-                    <!-- we will also add show, edit, and delete buttons -->
-                    {{-- <td>
-                
-                                            <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                                            <a class="btn btn-small btn-success" href="{{ URL::to('employee/' . $emp->id) }}">Show</a>
-                
-                    <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                    <a class="btn btn-small btn-info" href="{{ URL::to('employee/' . $emp->id . '/edit')}}">Edit</a>
-                
-                    </td> --}}
+                    <tr>
+                        <td id="id">{{ $vals->id }}</td>
+                        <td>{{ $vals->main_cat }}</td>
+                        <td>{{ $vals->sub_cat }}</td>
+                        <td>{{ $vals->title }}</td>
+                        <td>{{ $vals->status }}</td>
+                        <!-- we will also add show, edit, and delete buttons -->
+                        <td>
+                            <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
+                            <a class="btn btn-small btn-success" href="#">Show</a>
+
+                            <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
+                            <a class="btn btn-small btn-info" href="#">Edit</a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -75,7 +68,7 @@
     @csrf
 </div>
 
-<form id="upload_csv" method="POST" action="{{ url("/insertData") }}" enctype="multipart/form-data">
+<form id="templateadd" method="POST" action="{{ url("/addTemplate") }}" enctype="multipart/form-data">
     @csrf
     <div class="modal fade bd-example-modal-xl" id="contactModal" tabindex="-1" role="dialog"
         aria-labelledby="contactModalLabel" aria-hidden="true">
@@ -125,7 +118,6 @@
                                 </select>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="modal-footer">

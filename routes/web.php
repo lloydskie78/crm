@@ -39,5 +39,6 @@ Route::post('/deleteData/{id}', 'ClientController@destroy');
 Route::get('/sms', 'SmsController@smsindex');
 
 Route::get('/msgtemplate', 'MsgTemplateController@templateindex');
+Route::post('/addTemplate', 'MsgTemplateController@insert');
 
 
