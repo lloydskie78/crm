@@ -40,6 +40,32 @@
                         <th>Action</th>
                     </tr>
                 </thead>
+                <tbody>
+                    @foreach($msgtemp as $key => $vals)
+                    <td></td>
+                    <td class="details-control" style="width: 13px;">
+                        <i class="fa fa-plus-square" aria-hidden=clear"true"></i>
+                    </td>
+                    <td id="id">{{ $vals->id }}</td>
+                    <td>{{ $vals->agency_name }}</td>
+                    <td>{{ $vals->name }}</td>
+                    <td>{{ $vals->number }}</td>
+                    <td>{{ $vals->email }}</td>
+                    <td>{{ $vals->msg_in }}</td>
+                    <td>{{ $vals->update }}</td>
+                    <!-- we will also add show, edit, and delete buttons -->
+                    {{-- <td>
+                
+                                            <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
+                                            <a class="btn btn-small btn-success" href="{{ URL::to('employee/' . $emp->id) }}">Show</a>
+                
+                    <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
+                    <a class="btn btn-small btn-info" href="{{ URL::to('employee/' . $emp->id . '/edit')}}">Edit</a>
+                
+                    </td> --}}
+                    </tr>
+                    @endforeach
+                </tbody>
             </table>
         </div>
     </div>
@@ -67,7 +93,7 @@
                         <div class="form-row">
                             <div class="form-group col-md">
                                 <label for="inputTitle">Title</label>
-                                <input type="text" class="form-control" id="agency-name" name="agency-name" required>
+                                <input type="text" class="form-control" id="title" name="title" required>
                             </div>
                         </div>
                         <div class="form-row">
@@ -82,23 +108,20 @@
                                 {{-- <label for="inputEmail">Main Category</label>
                                 <input type="email" class="form-control" id="email" name="email" required> --}}
                                 <label for="exampleFormControlSelect1">Main Category</label>
-                                <select class="form-control" id="maincatSelect">
-
-                                    <option>Client Email</option>
-                                    <option>Client Text</option>
-                                    <option>Cleaner Email</option>
-                                    <option>Cleaner Text</option>
+                                <select class="form-control" id="maincatSelect" name="maincatSelect">
+                                    <option value="item0">--- Select one ---</option>
+                                    <option value="item1">Client Email</option>
+                                    <option value="item2">Client Text</option>
+                                    <option value="item3">Cleaner Email</option>
+                                    <option value="item4">Cleaner Text</option>
                                 </select>
                             </div>
                             <div class="form-group col-md">
                                 {{-- <label for="inputNumber">Sub Category</label>
                                 <input type="text" class="form-control" id="number" name="number" required> --}}
                                 <label for="exampleFormControlSelect1">Sub Category</label>
-                                <select class="form-control" id="subcatSelect">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
+                                <select class="form-control" id="subcatSelect" name="subcatSelect">
+                                    <option value="">--- select main category first ---</option>
                                 </select>
                             </div>
                         </div>
