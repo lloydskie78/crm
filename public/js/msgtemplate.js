@@ -136,7 +136,7 @@ $("#addTemplate").on("click", function() {
     $("#saveButton").html("Add Template");
 });
 
-$(".editModal").on("click", function() {
+$(document).on("click", ".editModal", function() {
     $("#msgtemplatemodal").modal("show");
     $("#saveButton").html("Update Template");
 
