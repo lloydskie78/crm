@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\MsgTemplates;
 use DB;
+use SoftDeletes;
 
 class MsgTemplateController extends Controller
 {
@@ -26,6 +27,24 @@ class MsgTemplateController extends Controller
         $msgtemp->save();
 
         return json_encode($msgtemp);
+
+    }
+
+    public function edit(){
+        $db = ClientModel::find($id);
+
+        $array = [
+                'title' => $request->input('title'),
+                'contents' => $request->input('contents'),
+                'main_cat' => $request->input('main_cat'),
+                'sub_cat' => $request->input('sub_cat'),
+            ];
+
+            $db->update($array);
+
+    }
+
+    public function delete(){
 
     }
 }

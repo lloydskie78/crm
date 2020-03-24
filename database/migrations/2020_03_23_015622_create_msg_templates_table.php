@@ -20,6 +20,7 @@ class CreateMsgTemplatesTable extends Migration
             $table->string('main_cat');
             $table->string('sub_cat');
             $table->string('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

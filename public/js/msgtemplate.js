@@ -41,14 +41,14 @@ $(document).ready(function() {
 });
 
 //SUMMERNOTE TEXTAREA
-$(document).ready(function() {
-    $(".contents").summernote({
-        height: 150
-    });
-});
+// $(document).ready(function() {
+//     $(".contents").summernote({
+//         height: 150
+//     });
+// });
 
 //  Clear Modal
-$("#contactModal").on("hidden.bs.modal", function() {
+$("#msgtemplatemodal").on("hidden.bs.modal", function() {
     $(this)
         .find("input,textarea,file, select")
         .val("")
@@ -56,53 +56,101 @@ $("#contactModal").on("hidden.bs.modal", function() {
 });
 
 $(document).on("click", "#saveButton", function() {
-    var title = $("#title").val();
-    var contents = $("#contents").val();
-    var maincat = $("#maincatSelect option:selected").text();
-    var subcat = $("#subcatSelect option:selected").text();
+    if (
+        $("#saveButton")
+            .text()
+            .trim() == "Add Template"
+    ) {
+        var title = $("#title").val();
+        var contents = $("#contents").val();
+        var maincat = $("#maincatSelect option:selected").text();
+        var subcat = $("#subcatSelect option:selected").text();
 
-    alert("Main: " + maincat + "\nSubcat: " + subcat);
-    console.log(maincat);
-    console.log(subcat);
+        alert("Main: " + maincat + "\nSubcat: " + subcat);
+        console.log(maincat);
+        console.log(subcat);
 
-    if (title != "" && contents != "" && maincat != "" && subcat != "") {
-        $.ajax({
-            url: "/addTemplate",
-            type: "POST",
-            data: {
-                _token: CSRF_TOKEN,
-                title: title,
-                contents: contents,
-                main_cat: maincat,
-                sub_cat: subcat
-            },
-            cache: false,
-            success: function(response) {
-                console.log(JSON.parse(response));
-                var newTemplate = JSON.parse(response);
+        if (title != "" && contents != "" && maincat != "" && subcat != "") {
+            $.ajax({
+                url: "/addTemplate",
+                type: "POST",
+                data: {
+                    _token: CSRF_TOKEN,
+                    title: title,
+                    contents: contents,
+                    main_cat: maincat,
+                    sub_cat: subcat
+                },
+                cache: false,
+                success: function(response) {
+                    console.log(JSON.parse(response));
+                    var newTemplate = JSON.parse(response);
 
-                var newLine = "";
+                    var newLine = "";
 
-                newLine += "<tr role='row'>";
-                newLine +=
-                    "<td id='id' class='sorting_1'>" + newTemplate.id + "</td>";
-                newLine += "<td>" + newTemplate.main_cat + "</td>";
-                newLine += "<td>" + newTemplate.sub_cat + "</td>";
-                newLine += "<td>" + newTemplate.title + "</td>";
-                newLine += "<td>" + newTemplate.status + "</td>";
-                newLine +=
-                    "<td> <a class='btn btn-small btn-success' href='#'>Show</a>";
-                newLine +=
-                    "<a class='btn btn-small btn-info' href='#'>Edit</a></td>";
-                newLine += "</tr>";
+                    newLine += "<tr role='row'>";
+                    newLine +=
+                        "<td id='id' class='sorting_1'>" +
+                        newTemplate.id +
+                        "</td>";
+                    newLine += "<td>" + newTemplate.main_cat + "</td>";
+                    newLine += "<td>" + newTemplate.sub_cat + "</td>";
+                    newLine += "<td>" + newTemplate.title + "</td>";
+                    newLine += "<td>" + newTemplate.contents + "</td>";
+                    newLine +=
+                        "<td class='text-center' width='200px'>" +
+                        '<div class="form-check"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label><div>' +
+                        "</td>";
+                    newLine +=
+                        "<td class='text-center' width='200px'><a class='btn btn-small btn-primary showModal'><i class='fas fa-eye'></i></a>";
+                    newLine +=
+                        "<a class='btn btn-small btn-warning editModal'><i class='fas fa-edit'></i></a>";
+                    newLine +=
+                        "<a class='btn btn-small btn-danger delModal'><i class='fas fa-trash-alt'></i></a>";
+                    newLine += "</td></tr>";
 
-                $("#temptable > tbody").append(newLine);
+                    $("#temptable > tbody").append(newLine);
 
-                toastr.success("Message template added!");
-            }
-        });
-        $("#modalCloseButton").trigger("click");
+                    toastr.success("Message template added!");
+                }
+            });
+            $("#modalCloseButton").trigger("click");
+        } else {
+        }
     } else {
-        toastr.error("Fill all fields!");
+        if (title != "" && contents != "" && maincat != "" && subcat != "") {
+        } else {
+            toastr.error("Fill all fields!");
+        }
     }
 });
+
+$(".showModal").on("click", function() {
+    $("#msgtemplatemodal").modal("show");
+});
+
+$("#addTemplate").on("click", function() {
+    $("#saveButton").html("Add Template");
+});
+
+$(".editModal").on("click", function() {
+    $("#msgtemplatemodal").modal("show");
+    $("#saveButton").html("Update Template");
+
+    $row = $(this).closest("tr");
+
+    var data = $row
+        .children("td")
+        .map(function() {
+            return $(this).text();
+        })
+        .get();
+
+    console.log(data);
+    $("#title").val(data[3]);
+    $("#contents").val(data[4]);
+    $("main_cat").val(data[1]);
+    $("sub_cat").val(data[2]);
+});
+
+$(".delModal").on("click", function() {});

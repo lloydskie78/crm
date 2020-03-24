@@ -145,7 +145,7 @@ class ClientController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        try {
+        
 
             $db = ClientModel::find($id);
         
@@ -162,9 +162,6 @@ class ClientController extends Controller
         
             return redirect()->action('ClientController@index');
 
-        } catch (\Exception $err) {
-            DB::rollBack();
-        }
         
     }
 

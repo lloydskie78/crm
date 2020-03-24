@@ -1,3 +1,12 @@
 .jqx-layout-group-auto-hide-content-vertical {
     width: 200px;
 }
+
+div.container {
+    width: 80%;
+}
+
+#defaultCheck1 {
+    width: 15px;
+    height: 15px;
+}

@@ -22,20 +22,21 @@
     <div class="card">
         <!-- /.card-header -->
         <div class="card-header">
-            <button type="button" class="btn btn-primary green-btn" style="float:right;" id="add-banner"
+            <button type="button" class="btn btn-primary green-btn" style="float:right;" id="addTemplate"
                 data-toggle="modal" data-target="#msgtemplatemodal">
                 <i class="fas fa-plus"> Add Template</i>
             </button>
         </div>
         <!-- /.card-body -->
         <div class="card-body mailbox-messages">
-            <table id="temptable" class="ui celled table">
+            <table id="temptable" class="table table-bordered table-hover" style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Main Category</th>
                         <th>Sub Category</th>
                         <th>Title</th>
+                        <th>Contents</th>
                         <th>Status</th>
                         <th class="text-center">Action</th>
                     </tr>
@@ -47,14 +48,19 @@
                         <td>{{ $vals->main_cat }}</td>
                         <td>{{ $vals->sub_cat }}</td>
                         <td>{{ $vals->title }}</td>
-                        <td></td>
+                        <td>{{ $vals->contents }}</td>
+                        <td class="text-center" width="100px">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                </label>
+                            </div>
+                        </td>
                         <!-- we will also add show, edit, and delete buttons -->
-                        <td class="text-center">
-                            <!-- show the nerd (uses the show method found at GET /nerds/{id} -->
-                            <a class="btn btn-small btn-success" href="#">Show</a>
-
-                            <!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
-                            <a class="btn btn-small btn-info" href="#">Edit</a>
+                        <td class="text-center" width="200px">
+                            <a class="btn btn-small btn-primary showModal"><i class="fas fa-eye"></i></a>
+                            <a class="btn btn-small btn-warning editModal"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-small btn-danger delModal"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -91,8 +97,8 @@
                     <div class="form-row">
                         <div class="form-group col-md">
                             <label for="inputMsgIn">Contents</label>
-                            {{-- <textarea class="form-control col-xs-12" name="msg" id="msg-in" rows="5"></textarea> --}}
-                            <textarea class="contents" id="contents" name="contents" required></textarea>
+                            <textarea class="form-control rounded-0" id="contents" name="contents" rows="10"
+                                required></textarea>
                         </div>
                     </div>
                     <div class="form-row">
@@ -129,19 +135,21 @@
     </div>
 </div>
 
-
-
 @endsection
 
 @section('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.semanticui.min.css">
+{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.semanticui.min.css"> --}}
 <link rel="stylesheet" href="{{ asset('designs/plugins/toastr/toastr.min.css') }}">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+<link rel="stylesheet" href="{{ asset('css/msgtemplate.css') }}">
 @endsection
 
 @section('scripts')
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.semanticui.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+{{-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.semanticui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"></script>
+<script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
 <script src="{{ asset('designs/plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('js/msgtemplate.js') }}"></script>
 @endsection
