@@ -84,6 +84,11 @@ $(document).on("click", "#saveButton", function() {
                 cache: false,
                 success: function(response) {
                     console.log(JSON.parse(response));
+
+                    if($("#temptable").find('.dataTables_empty').length){
+                        $("#temptable > tbody").empty();
+                    }
+
                     var newTemplate = JSON.parse(response);
 
                     var newLine = "";
