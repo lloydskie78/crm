@@ -85,7 +85,7 @@ $(document).on("click", "#saveButton", function() {
                 success: function(response) {
                     console.log(JSON.parse(response));
 
-                    if($("#temptable").find('.dataTables_empty').length){
+                    if ($("#temptable").find(".dataTables_empty").length) {
                         $("#temptable > tbody").empty();
                     }
 
@@ -103,13 +103,11 @@ $(document).on("click", "#saveButton", function() {
                     newLine += "<td>" + newTemplate.title + "</td>";
                     newLine += "<td>" + newTemplate.contents + "</td>";
                     newLine +=
-                        "<td class='text-center' width='200px'>" +
+                        "<td class='text-center' width='170px'>" +
                         '<div class="form-check"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label><div>' +
                         "</td>";
                     newLine +=
-                        "<td class='text-center' width='200px'><a class='btn btn-small btn-primary showModal'><i class='fas fa-eye'></i></a>";
-                    newLine +=
-                        "<a class='btn btn-small btn-warning editModal'><i class='fas fa-edit'></i></a>";
+                        "<td class='text-center' width='120px'><a class='btn btn-small btn-warning editModal'><i class='fas fa-edit'></i></a>";
                     newLine +=
                         "<a class='btn btn-small btn-danger delModal'><i class='fas fa-trash-alt'></i></a>";
                     newLine += "</td></tr>";
@@ -130,7 +128,7 @@ $(document).on("click", "#saveButton", function() {
     }
 });
 
-$(".showModal").on("click", function() {
+$(document).on("click", ".showModal", function() {
     $("#msgtemplatemodal").modal("show");
 });
 

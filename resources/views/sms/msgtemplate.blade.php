@@ -57,8 +57,7 @@
                             </div>
                         </td>
                         <!-- we will also add show, edit, and delete buttons -->
-                        <td class="text-center" width="200px">
-                            <a class="btn btn-small btn-primary showModal"><i class="fas fa-eye"></i></a>
+                        <td class="text-center" width="120px">
                             <a class="btn btn-small btn-warning editModal"><i class="fas fa-edit"></i></a>
                             <a class="btn btn-small btn-danger delModal"><i class="fas fa-trash-alt"></i></a>
                         </td>
