@@ -62,12 +62,12 @@
                 <!-- small box -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>53<sup style="font-size: 20px">%</sup></h3>
+                        <h3>{{ \DB::table('users')->count()}}</h3>
 
-                        <p>Bounce Rate</p>
+                        <p>Users</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
+                        <i class="ion ion-person"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
@@ -82,7 +82,7 @@
                         <p>Contacts</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person"></i>
+                        <i class="ion ion-person-stalker"></i>
                     </div>
                     <a href="/admin/clients" class="small-box-footer">More info <i
                             class="fas fa-arrow-circle-right"></i></a>

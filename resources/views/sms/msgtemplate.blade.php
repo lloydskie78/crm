@@ -149,6 +149,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"></script>
 <script src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
-<script src="{{ asset('designs/plugins/toastr/toastr.min.js') }}"></script>
+<script src="{{ asset('designs/plugins/toastr/toastr.min.js') }}"></script>.
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="{{ asset('js/msgtemplate.js') }}"></script>
 @endsection

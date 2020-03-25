@@ -150,11 +150,9 @@
                         <i class="far fa-user-circle"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">Account Settings</span>
-                        <a href="#" class="dropdown-item">
-                            asdasd
-                        </a>
-                        <button class="btn btn-success">Logout</button>
+                        <a href="/profile"><span class="dropdown-item dropdown-header">Account Settings</span></a>
+                        <a href="/login"><span class="dropdown-item dropdown-header"><button
+                                    class="btn btn-outline-secondary btn-sm">Logout</button></span></a>
                     </div>
                 </li>
             </ul>
@@ -179,7 +177,7 @@
                             alt="User Image" />
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Lloyd Alcantara</a>
+                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                     </div>
                 </div>
 
@@ -207,7 +205,7 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="" class="nav-link">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-envelope"></i>
                                 <p>
                                     Email
@@ -240,6 +238,29 @@
                                 <i class="nav-icon fas fa-file-alt"></i>
                                 <p>Message Template </p>
                             </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-user-circle"></i>
+                                <p>
+                                    {{ Auth::user()->name }}
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-user"></i>
+                                        <p>Profile</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="logout" class="nav-link">
+                                        <i class="nav-icon fas fa-power-off"></i>
+                                        <p>Logout</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </nav>

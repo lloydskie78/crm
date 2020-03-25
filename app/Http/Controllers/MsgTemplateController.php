@@ -36,7 +36,7 @@ class MsgTemplateController extends Controller
     }
 
     public function edit(){
-        $db = ClientModel::find($id);
+        $db = MsgTemplates::find($id);
 
         $array = [
                 'title' => $request->input('title'),
@@ -49,7 +49,9 @@ class MsgTemplateController extends Controller
 
     }
 
-    public function delete(){
-
+    public function delete($id){
+        
+        $db = MsgTemplates::find($id);
+        $db->delete();
     }
 }

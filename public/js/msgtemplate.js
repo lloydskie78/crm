@@ -158,4 +158,58 @@ $(document).on("click", ".editModal", function() {
     $("sub_cat").val(data[2]);
 });
 
-$(".delModal").on("click", function() {});
+$(".delModal").on("click", function() {
+    var currentRow = $(this).closest("tr");
+
+    var colId = currentRow.find("td:eq(0)").text();
+
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+            confirmButton: "btn btn-success",
+            cancelButton: "btn btn-danger"
+        },
+        buttonsStyling: false
+    });
+
+    swalWithBootstrapButtons
+        .fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true
+        })
+        .then(result => {
+            if (result.value) {
+                $.ajax({
+                    url: "/deleteTemplate/" + colId,
+                    type: "POST",
+                    data: {
+                        _token: CSRF_TOKEN
+                    },
+                    cache: false,
+                    success: function() {
+                        toastr.warning("Contact deleted");
+                        currentRow.hide();
+                    }
+                });
+
+                swalWithBootstrapButtons.fire(
+                    "Deleted!",
+                    "Your file has been deleted.",
+                    "success"
+                );
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    "Cancelled",
+                    "Your imaginary file is safe :)",
+                    "error"
+                );
+            }
+        });
+});

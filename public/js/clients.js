@@ -342,29 +342,6 @@ $("#contactModal").on("hidden.bs.modal", function() {
         .end();
 });
 
-// $("#saveButton").on("click", function() {
-//     if (isTabclicked == true) {
-//         function opsi(data) {
-//             var allRows = data.split(/\r?\n|\r/);
-//             var table = "<";
-//         }
-//     } else {
-//         // alert("tab no 1 is clicked....");
-//     }
-// });
-
-// For tab click
-$("#tab1").on("click", function() {
-    isTabclicked = false;
-    // alert("tab no 1 is clicked....");
-    $("#tabber").val(isTabclicked);
-});
-$("#tab2").on("click", function() {
-    isTabclicked = true;
-    // alert("tab no 2 is clicked....");
-    $("#tabber").val(isTabclicked);
-});
-
 function submit() {
     $("#upload_csv").submit();
 }
