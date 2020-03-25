@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class SmsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function smsindex()
     {
         return view('sms.sms');

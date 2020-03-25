@@ -10,22 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'DashController@index');
 Route::get('/dashboard', 'DashController@index');
 
-
-Route::get('/admin', function () {
-    return view('layouts.layout');
-});
-
-
 Route::get('inbox', 'MailController@inbox')->name('inbox');
 Route::get('compose', 'MailController@compose')->name('compose');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/clients', 'ClientController@index');
 
@@ -39,6 +32,6 @@ Route::post('/deleteData/{id}', 'ClientController@destroy');
 Route::get('/sms', 'SmsController@smsindex');
 
 Route::get('/msgtemplate', 'MsgTemplateController@templateindex');
-Route::post('/addTemplate', 'MsgTemplateController@insert');
 
+Route::post('/addTemplate', 'MsgTemplateController@insert');
 

@@ -61,6 +61,7 @@ $(document).on("click", "#saveButton", function() {
             .text()
             .trim() == "Add Template"
     ) {
+        alert("Hello World");
         var title = $("#title").val();
         var contents = $("#contents").val();
         var maincat = $("#maincatSelect option:selected").text();
@@ -120,23 +121,23 @@ $(document).on("click", "#saveButton", function() {
             $("#modalCloseButton").trigger("click");
         } else {
         }
-    } else {
-        if (title != "" && contents != "" && maincat != "" && subcat != "") {
+    } else if (
+        $("#saveButton")
+            .text()
+            .trim() == "Update Template"
+    ) {
+        if (title != "" || contents != "" || maincat != "" || subcat != "") {
         } else {
             toastr.error("Fill all fields!");
         }
     }
 });
 
-$(document).on("click", ".showModal", function() {
-    $("#msgtemplatemodal").modal("show");
-});
-
 $("#addTemplate").on("click", function() {
     $("#saveButton").html("Add Template");
 });
 
-$(".editModal").on("click", function() {
+$(document).on("click", ".editModal", function() {
     $("#msgtemplatemodal").modal("show");
     $("#saveButton").html("Update Template");
 
@@ -152,6 +153,7 @@ $(".editModal").on("click", function() {
     console.log(data);
     $("#title").val(data[3]);
     $("#contents").val(data[4]);
+    console.log("Main Cat: " + data[1], "\nSub Cat: " + data[2]);
     $("main_cat").val(data[1]);
     $("sub_cat").val(data[2]);
 });
