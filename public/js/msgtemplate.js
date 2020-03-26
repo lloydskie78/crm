@@ -155,10 +155,13 @@ $("#addTemplate").on("click", function() {
 });
 
 $(document).on("click", ".editModal", function() {
+<<<<<<< HEAD
     var currentRow = $(this).closest("tr");
 
     tempid = currentRow.find("td:eq(0)").text();
 
+=======
+>>>>>>> b9c8daf496523379894f36c8dfb119c5824bb255
     $("#msgtemplatemodal").modal("show");
     $("#saveButton").html("Update Template");
 
