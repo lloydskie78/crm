@@ -1,5 +1,6 @@
 //FOR JQUERY DATATABLE
 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr("content");
+var tempid = 0;
 
 $(document).ready(function() {
     $("#temptable").DataTable({
@@ -7,6 +8,7 @@ $(document).ready(function() {
         select: {
             style: "multi"
         },
+        columnDefs: [{ bSortable: false, targets: [5, 6] }],
         order: [[0, "asc"]]
     });
 });
@@ -40,19 +42,13 @@ $(document).ready(function() {
     });
 });
 
-//SUMMERNOTE TEXTAREA
-// $(document).ready(function() {
-//     $(".contents").summernote({
-//         height: 150
-//     });
-// });
-
 //  Clear Modal
 $("#msgtemplatemodal").on("hidden.bs.modal", function() {
     $(this)
-        .find("input,textarea,file, select")
+        .find("input,textarea,file")
         .val("")
         .end();
+    $("#main_cat").val("item0");
 });
 
 $(document).on("click", "#saveButton", function() {
@@ -61,15 +57,10 @@ $(document).on("click", "#saveButton", function() {
             .text()
             .trim() == "Add Template"
     ) {
-        alert("Hello World");
         var title = $("#title").val();
         var contents = $("#contents").val();
         var maincat = $("#maincatSelect option:selected").text();
         var subcat = $("#subcatSelect option:selected").text();
-
-        alert("Main: " + maincat + "\nSubcat: " + subcat);
-        console.log(maincat);
-        console.log(subcat);
 
         if (title != "" && contents != "" && maincat != "" && subcat != "") {
             $.ajax({
@@ -86,47 +77,73 @@ $(document).on("click", "#saveButton", function() {
                 success: function(response) {
                     console.log(JSON.parse(response));
 
-                    if ($("#temptable").find(".dataTables_empty").length) {
-                        $("#temptable > tbody").empty();
-                    }
+                    // if ($("#temptable").find(".dataTables_empty").length) {
+                    //     $("#temptable > tbody").empty();
+                    // }
 
-                    var newTemplate = JSON.parse(response);
+                    // var newTemplate = JSON.parse(response);
 
-                    var newLine = "";
+                    // var newLine = "";
 
-                    newLine += "<tr role='row'>";
-                    newLine +=
-                        "<td id='id' class='sorting_1'>" +
-                        newTemplate.id +
-                        "</td>";
-                    newLine += "<td>" + newTemplate.main_cat + "</td>";
-                    newLine += "<td>" + newTemplate.sub_cat + "</td>";
-                    newLine += "<td>" + newTemplate.title + "</td>";
-                    newLine += "<td>" + newTemplate.contents + "</td>";
-                    newLine +=
-                        "<td class='text-center' width='170px'>" +
-                        '<div class="form-check"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label><div>' +
-                        "</td>";
-                    newLine +=
-                        "<td class='text-center' width='120px'><a class='btn btn-small btn-warning editModal'><i class='fas fa-edit'></i></a>";
-                    newLine +=
-                        "<a class='btn btn-small btn-danger delModal'><i class='fas fa-trash-alt'></i></a>";
-                    newLine += "</td></tr>";
+                    // newLine += "<tr>";
+                    // newLine +=
+                    //     "<td id='id' class='sorting_1'>" +
+                    //     newTemplate.id +
+                    //     "</td>";
+                    // newLine += "<td>" + newTemplate.main_cat + "</td>";
+                    // newLine += "<td>" + newTemplate.sub_cat + "</td>";
+                    // newLine += "<td>" + newTemplate.title + "</td>";
+                    // newLine += "<td>" + newTemplate.contents + "</td>";
+                    // newLine +=
+                    //     "<td class='text-center' width='70px'>" +
+                    //     '<div class="form-check"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1"><label class="form-check-label" for="defaultCheck1"></label><div>' +
+                    //     "</td>";
+                    // newLine +=
+                    //     "<td class='text-center' width='120px'><a class='btn btn-small btn-warning editModal'><i class='fas fa-edit'></i></a>";
+                    // newLine +=
+                    //     "<a class='btn btn-small btn-danger delModal'><i class='fas fa-trash-alt'></i></a>";
+                    // newLine += "</td></tr>";
 
-                    $("#temptable > tbody").append(newLine);
+                    // $("#temptable > tbody").append(newLine);\
+
+                    $("#temptable").load(window.location + " #temptable");
 
                     toastr.success("Message template added!");
                 }
             });
             $("#modalCloseButton").trigger("click");
         } else {
+            toastr.error("Fill all fields!");
         }
     } else if (
         $("#saveButton")
             .text()
             .trim() == "Update Template"
     ) {
-        if (title != "" || contents != "" || maincat != "" || subcat != "") {
+        if (title != "" && contents != "" && maincat != "" && subcat != "") {
+            var title = $("#title").val();
+            var contents = $("#contents").val();
+            var maincat = $("#maincatSelect option:selected").text();
+            var subcat = $("#subcatSelect option:selected").text();
+
+            $.ajax({
+                url: "/updateTemplate/" + tempid,
+                type: "PATCH",
+                data: {
+                    _token: CSRF_TOKEN,
+                    title: title,
+                    contents: contents,
+                    main_cat: maincat,
+                    sub_cat: subcat
+                },
+                cache: false,
+                success: function() {
+                    toastr.success("Contact updated successfully");
+                    tempid = 0;
+                    $("#temptable").load(window.location + " #temptable");
+                }
+            });
+            $("#modalCloseButton").trigger("click");
         } else {
             toastr.error("Fill all fields!");
         }
@@ -138,8 +155,26 @@ $("#addTemplate").on("click", function() {
 });
 
 $(document).on("click", ".editModal", function() {
+    var currentRow = $(this).closest("tr");
+
+    tempid = currentRow.find("td:eq(0)").text();
+
     $("#msgtemplatemodal").modal("show");
     $("#saveButton").html("Update Template");
+
+    main_category_array = [
+        "Client Email",
+        "Client Text",
+        "Cleaner Email",
+        "Cleaner Text"
+    ];
+
+    sub_category_array = [
+        ["item1a", "item1b"],
+        ["item2a", "item2b"],
+        ["item3a", "item3b"],
+        ["item4a", "item4b"]
+    ];
 
     $row = $(this).closest("tr");
 
@@ -151,14 +186,41 @@ $(document).on("click", ".editModal", function() {
         .get();
 
     console.log(data);
+
+    let main_category_index = main_category_array.indexOf(data[1]);
+    let sub_category_index = sub_category_array[main_category_index].indexOf(
+        data[2]
+    );
+
+    if (main_category_index == 0) {
+        $("#subcatSelect").html(
+            "<option value='test'>item1a</option><option value='test2'>item1b</option>"
+        );
+    } else if (main_category_index == 1) {
+        $("#subcatSelect").html(
+            "<option value='test'>item2a</option><option value='test2'>item2b</option>"
+        );
+    } else if (main_category_index == 2) {
+        $("#subcatSelect").html(
+            "<option value='test'>item3a</option><option value='test2'>item3b</option>"
+        );
+    } else if (main_category_index == 3) {
+        $("#subcatSelect").html(
+            "<option value='test'>item4a</option><option value='test2'>item4b</option>"
+        );
+    } else {
+        $("#subcatSelect").html(
+            "<option value=''>--- select main category first ---</option>"
+        );
+    }
+
     $("#title").val(data[3]);
     $("#contents").val(data[4]);
-    console.log("Main Cat: " + data[1], "\nSub Cat: " + data[2]);
-    $("main_cat").val(data[1]);
-    $("sub_cat").val(data[2]);
+    $("#maincatSelect").prop("selectedIndex", main_category_index + 1);
+    $("#subcatSelect").prop("selectedIndex", sub_category_index);
 });
 
-$(".delModal").on("click", function() {
+$(document).on("click", ".delModal", function() {
     var currentRow = $(this).closest("tr");
 
     var colId = currentRow.find("td:eq(0)").text();
@@ -207,7 +269,7 @@ $(".delModal").on("click", function() {
             ) {
                 swalWithBootstrapButtons.fire(
                     "Cancelled",
-                    "Your imaginary file is safe :)",
+                    "Your file is safe :)",
                     "error"
                 );
             }

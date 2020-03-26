@@ -145,16 +145,6 @@
                         <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-user-circle"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                        <a href="/profile"><span class="dropdown-item dropdown-header">Account Settings</span></a>
-                        <a href="/login"><span class="dropdown-item dropdown-header"><button
-                                    class="btn btn-outline-secondary btn-sm">Logout</button></span></a>
-                    </div>
-                </li>
             </ul>
         </nav>
         <!-- /.navbar -->

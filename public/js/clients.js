@@ -26,6 +26,7 @@ $(document).ready(function() {
         lengthMenu: [10, 25, 50, 75, 100, 500, 1000, 10000],
         columnDefs: [
             {
+                bSortable: false,
                 targets: [0, 0],
                 checkboxes: {
                     selectRow: true

@@ -9,5 +9,3 @@ $(document).ready(function() {
         order: [[2, "asc"]]
     });
 });
-
-

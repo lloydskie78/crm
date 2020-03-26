@@ -37,7 +37,7 @@
                         <th>Sub Category</th>
                         <th>Title</th>
                         <th>Contents</th>
-                        <th class="text-center" width="100px">Status</th>
+                        <th class="text-center" width="70px">Status</th>
                         <th class="text-center" width="120px">Action</th>
                     </tr>
                 </thead>
@@ -49,10 +49,9 @@
                         <td>{{ $vals->sub_cat }}</td>
                         <td>{{ $vals->title }}</td>
                         <td>{{ $vals->contents }}</td>
-                        <td class="text-center" width="120px">
+                        <td class="text-center" width="70px">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
                                 </label>
                             </div>
                         </td>

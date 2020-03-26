@@ -14,9 +14,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', 'DashController@index');
+Route::get('/', 'DashController@index')->name('dashboard');
 
-Route::get('/dashboard', 'DashController@index');
+Route::get('/dashboard', 'DashController@index')->name('dashboard');
 
 Route::get('inbox', 'MailController@inbox')->name('inbox');
 Route::get('compose', 'MailController@compose')->name('compose');
@@ -38,6 +38,7 @@ Route::post('/addTemplate', 'MsgTemplateController@insert');
 
 Route::post('/addTemplate', 'MsgTemplateController@insert');
 Route::post('/deleteTemplate/{id}', 'MsgTemplateController@delete');
+Route::patch('/updateTemplate/{id}', 'MsgTemplateController@edit');
 
 
 Route::get('/logout', 'Auth\LoginController@logout');

@@ -63,7 +63,6 @@
                 <div class="small-box bg-success">
                     <div class="inner">
                         <h3>{{ \DB::table('users')->count()}}</h3>
-
                         <p>Users</p>
                     </div>
                     <div class="icon">
@@ -78,14 +77,12 @@
                 <div class="small-box bg-warning">
                     <div class="inner">
                         <h3>{{ \DB::table('client_models')->count()}}</h3>
-
                         <p>Contacts</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-stalker"></i>
                     </div>
-                    <a href="/admin/clients" class="small-box-footer">More info <i
-                            class="fas fa-arrow-circle-right"></i></a>
+                    <a href="clients" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -94,7 +91,6 @@
                 <div class="small-box bg-danger">
                     <div class="inner">
                         <h3>65</h3>
-
                         <p>Unique Visitors</p>
                     </div>
                     <div class="icon">

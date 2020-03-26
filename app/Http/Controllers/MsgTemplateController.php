@@ -33,9 +33,10 @@ class MsgTemplateController extends Controller
 
         return json_encode($msgtemp);
 
-    }
+    }   
 
-    public function edit(){
+    public function edit(Request $request, $id){
+        
         $db = MsgTemplates::find($id);
 
         $array = [
@@ -43,9 +44,11 @@ class MsgTemplateController extends Controller
                 'contents' => $request->input('contents'),
                 'main_cat' => $request->input('main_cat'),
                 'sub_cat' => $request->input('sub_cat'),
-            ];
+                ];
 
-            $db->update($array);
+        $db->update($array);
+            
+
 
     }
 
