@@ -40,6 +40,8 @@ Route::post('/addTemplate', 'MsgTemplateController@insert');
 Route::post('/deleteTemplate/{id}', 'MsgTemplateController@delete');
 Route::patch('/updateTemplate/{id}', 'MsgTemplateController@edit');
 
+Route::get('/accounts', 'AccountsController@index');
+Route::post('/deleteUser/{id}', 'AccountsController@destroy');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 

@@ -189,6 +189,12 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="/accounts" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>Accounts</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="/sms" class="nav-link">
                                 <i class="nav-icon far fa-comment-dots"></i>
                                 <p>SMS</p>

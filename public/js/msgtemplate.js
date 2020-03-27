@@ -8,7 +8,19 @@ $(document).ready(function() {
         select: {
             style: "multi"
         },
-        columnDefs: [{ bSortable: false, targets: [5, 6] }],
+        columnDefs: [
+            {
+                bSortable: false,
+                targets: [5, 6]
+            }
+        ],
+        columnDefs: [
+            {
+                targets: [4],
+                visible: false,
+                searchable: false
+            }
+        ],
         order: [[0, "asc"]]
     });
 });
@@ -107,7 +119,6 @@ $(document).on("click", "#saveButton", function() {
                     // $("#temptable > tbody").append(newLine);\
 
                     $("#temptable").load(window.location + " #temptable");
-
                     toastr.success("Message template added!");
                 }
             });
