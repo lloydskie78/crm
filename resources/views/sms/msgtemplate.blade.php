@@ -105,7 +105,7 @@
                                 <input type="email" class="form-control" id="email" name="email" required> --}}
                             <label for="exampleFormControlSelect1">Main Category</label>
                             <select class="form-control" id="maincatSelect" name="maincatSelect">
-                                <option value="item0">--- Select one ---</option>
+                                <option value="item0" disabled selected>--- Select one ---</option>
                                 <option value="item1">Client Email</option>
                                 <option value="item2">Client Text</option>
                                 <option value="item3">Cleaner Email</option>
@@ -117,7 +117,7 @@
                                 <input type="text" class="form-control" id="number" name="number" required> --}}
                             <label for="exampleFormControlSelect1">Sub Category</label>
                             <select class="form-control" id="subcatSelect" name="subcatSelect">
-                                <option value="">--- select main category first ---</option>
+                                <option disabled selected>--- select main category first ---</option>
                             </select>
                         </div>
                     </div>
